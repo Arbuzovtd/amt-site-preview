@@ -1,0 +1,47 @@
+/* AMT Systems — type. One family (IBM Plex Sans) carries the voice; IBM Plex Mono
+   is reserved for real numerics: quantities, prices, article codes, formulas. */
+:root{
+  --font-sans:"IBM Plex Sans","Segoe UI",system-ui,-apple-system,sans-serif;
+  --font-mono:"IBM Plex Mono","Cascadia Mono",Consolas,monospace;
+  --font-core:var(--font-sans);
+  --font-display:var(--font-sans);
+  --font-numeric:var(--font-mono);
+
+  --weight-regular:400; /* @kind other */
+  --weight-medium:500; /* @kind other */
+  --weight-semibold:600; /* @kind other */
+  --weight-bold:700; /* @kind other */
+
+  --text-2xs:11px;--text-xs:12px;--text-sm:13px;--text-base:14px;--text-md:15px;
+  --text-lg:17px;--text-xl:20px;--text-2xl:24px;--text-3xl:30px;--text-4xl:38px;
+  --text-5xl:48px;--text-6xl:60px;
+
+  --leading-tight:1.15; /* @kind other */
+  --leading-snug:1.3; /* @kind other */
+  --leading-normal:1.45; /* @kind other */
+  --leading-relaxed:1.6; /* @kind other */
+
+  --tracking-display:-0.025em; /* @kind other */
+  --tracking-heading:-0.015em; /* @kind other */
+  --tracking-normal:0; /* @kind other */
+  --tracking-label:0.02em; /* @kind other */
+  --tracking-caps:0.06em; /* @kind other */
+
+  /* role scale — product UI is 14px based, marketing steps up */
+  --type-display:var(--weight-semibold) var(--text-5xl)/var(--leading-tight) var(--font-display);
+  --type-h1:var(--weight-semibold) var(--text-3xl)/1.2 var(--font-display);
+  --type-h2:var(--weight-semibold) var(--text-2xl)/1.25 var(--font-display);
+  --type-h3:var(--weight-semibold) var(--text-lg)/1.3 var(--font-core);
+  --type-h4:var(--weight-semibold) var(--text-base)/1.35 var(--font-core);
+  --type-body:var(--weight-regular) var(--text-base)/var(--leading-normal) var(--font-core);
+  --type-body-lg:var(--weight-regular) var(--text-md)/var(--leading-relaxed) var(--font-core);
+  --type-body-sm:var(--weight-regular) var(--text-sm)/var(--leading-normal) var(--font-core);
+  --type-label:var(--weight-medium) var(--text-sm)/1.3 var(--font-core);
+  --type-caption:var(--weight-regular) var(--text-xs)/1.35 var(--font-core);
+  --type-overline:var(--weight-semibold) var(--text-2xs)/1.2 var(--font-core);
+  --type-numeric:var(--weight-regular) var(--text-sm)/1.3 var(--font-numeric);
+  --type-numeric-strong:var(--weight-semibold) var(--text-sm)/1.3 var(--font-numeric);
+
+  --measure-prose:68ch; /* @kind other */
+  --measure-narrow:52ch; /* @kind other */
+}

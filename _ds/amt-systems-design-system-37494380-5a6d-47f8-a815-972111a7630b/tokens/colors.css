@@ -1,0 +1,102 @@
+/* AMT Systems — colour primitives + semantic roles.
+   Neutral ramp is cool graphite (the product lives on office monitors, 8-10h/day).
+   One decisive action hue (steel blue), one attention hue (ocher), two status hues. */
+:root{
+  --white:#FFFFFF;
+  --gray-25:#FAFAFB;--gray-50:#F4F5F7;--gray-100:#EAECEF;--gray-200:#DDE0E5;--gray-300:#C4C9D1;
+  --gray-400:#9AA1AD;--gray-500:#6E7682;--gray-600:#515863;--gray-700:#3A404A;--gray-800:#262B33;
+  --gray-900:#171A1F;--gray-950:#0E1014;
+
+  --steel-50:#EDF3FA;--steel-100:#D6E4F5;--steel-200:#AEC8E8;--steel-300:#7BA3D4;--steel-400:#4A7CB8;
+  --steel-500:#2A5D96;--steel-600:#204C7D;--steel-700:#1A3D64;--steel-800:#14304E;--steel-900:#0F2437;
+
+  --ocher-50:#FDF4E4;--ocher-100:#F8E4BE;--ocher-200:#EFC77A;--ocher-300:#DCA43C;
+  --ocher-400:#B87F14;--ocher-500:#96660D;--ocher-600:#75500A;
+
+  --green-50:#E8F5EC;--green-100:#C6E7D1;--green-300:#4C9B6A;--green-500:#1E7A48;--green-600:#16603A;--green-700:#10492C;
+
+  --red-50:#FCEDEC;--red-100:#F7D2D0;--red-300:#D9615C;--red-500:#B4232A;--red-600:#94191F;--red-700:#741317;
+
+  /* ---- surfaces ---- */
+  --surface-canvas:var(--gray-50);
+  --surface-card:var(--white);
+  --surface-raised:var(--white);
+  --surface-sunken:var(--gray-100);
+  --surface-header:var(--gray-900);
+  --surface-sidebar:var(--gray-800);
+  --surface-subtle:var(--gray-25);
+  --surface-hover:var(--gray-50);
+  --surface-active:var(--gray-100);
+  --surface-selected:var(--steel-50);
+  --surface-accent:var(--steel-500);
+  --surface-attention:var(--ocher-50);
+  --surface-danger:var(--red-50);
+  --surface-success:var(--green-50);
+  --surface-scrim:rgb(23 26 31 / .48);
+
+  /* ---- text ---- */
+  --text-primary:var(--gray-900);
+  --text-body:var(--gray-800);
+  --text-secondary:var(--gray-600);
+  --text-muted:var(--gray-500);
+  --text-disabled:var(--gray-400);
+  --text-inverse:var(--white);
+  --text-on-dark-secondary:var(--gray-300);
+  --text-on-dark-muted:var(--gray-400); /* минимум для подписей на графите: gray-500 даёт 3.10:1 */
+  --text-link:var(--steel-600);
+  --text-link-hover:var(--steel-700);
+  --text-accent:var(--steel-600);
+  --text-attention:var(--ocher-500);
+  --text-success:var(--green-600);
+  --text-danger:var(--red-600);
+
+  /* ---- borders ---- */
+  --border-hairline:var(--gray-200);
+  --border-default:var(--gray-300);
+  --border-strong:var(--gray-400);
+  --border-field:var(--gray-300);
+  --border-field-hover:var(--gray-400);
+  --border-focus:var(--steel-500);
+  --border-danger:var(--red-500);
+  --border-on-dark:var(--gray-700);
+
+  /* ---- actions ---- */
+  --action-primary:var(--steel-500);
+  --action-primary-hover:var(--steel-600);
+  --action-primary-active:var(--steel-700);
+  --action-primary-text:var(--white);
+  --action-secondary-bg:var(--white);
+  --action-secondary-hover:var(--gray-50);
+  --action-secondary-active:var(--gray-100);
+  --action-danger:var(--red-500);
+  --action-danger-hover:var(--red-600);
+  --action-disabled-bg:var(--gray-100);
+
+  /* ---- focus ---- */
+  --focus-ring:0 0 0 2px var(--white),0 0 0 4px var(--steel-400);
+  --focus-ring-inset:inset 0 0 0 1px var(--steel-500);
+
+  /* ---- data / table ---- */
+  --table-header-bg:var(--gray-100);
+  --table-row-alt:var(--gray-25);
+  --table-row-hover:var(--gray-100);
+  --table-row-selected:var(--steel-50);
+  --table-row-selected-hover:var(--steel-100);
+  --table-grid-line:var(--gray-200);
+  --table-cell-edited:var(--ocher-50);
+  --table-cell-formula:var(--steel-50);
+  --table-total-bg:var(--gray-100);
+
+  /* ---- series (supplier comparison charts, up to 6 suppliers) ---- */
+  --series-1:#2A5D96;--series-2:#B87F14;--series-3:#1E7A48;--series-4:#7BA3D4;
+  --series-5:#94191F;--series-6:#6E7682;
+
+  /* ---- browser surfaces ---- */
+  --selection-bg:var(--steel-100);
+  --selection-text:var(--gray-900);
+  --caret:var(--steel-600);
+  --scrollbar-track:var(--gray-100);
+  --scrollbar-thumb:var(--gray-300);
+  --scrollbar-thumb-hover:var(--gray-400);
+}
+::selection{background:var(--selection-bg);color:var(--selection-text)}
