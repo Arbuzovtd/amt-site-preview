@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noindex, nofollow">
+<title>Презентация ИАС «Закупки» — AMT Systems</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%232A5D96%22/%3E%3Ctext x=%2216%22 y=%2222%22 font-family=%22monospace%22 font-size=%2216%22 font-weight=%22600%22 fill=%22white%22 text-anchor=%22middle%22%3EA%3C/text%3E%3C/svg%3E">
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/amt-systems-design-system-37494380-5a6d-47f8-a815-972111a7630b/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/amt-systems-design-system-37494380-5a6d-47f8-a815-972111a7630b/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/amt-systems-design-system-37494380-5a6d-47f8-a815-972111a7630b/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/amt-systems-design-system-37494380-5a6d-47f8-a815-972111a7630b/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/amt-systems-design-system-37494380-5a6d-47f8-a815-972111a7630b/tokens/shape.css">
+  <link rel="stylesheet" href="_ds/amt-systems-design-system-37494380-5a6d-47f8-a815-972111a7630b/tokens/elevation.css">
+  <link rel="stylesheet" href="_ds/amt-systems-design-system-37494380-5a6d-47f8-a815-972111a7630b/tokens/motion.css">
+  <link rel="stylesheet" href="_ds/amt-systems-design-system-37494380-5a6d-47f8-a815-972111a7630b/tokens/base.css">
+  <link rel="stylesheet" href="_ds/amt-systems-design-system-37494380-5a6d-47f8-a815-972111a7630b/styles.css">
+  <style>
+    body { margin: 0; background: var(--gray-950); }
+    a { color: var(--steel-600); }
+    a:hover { color: var(--steel-500); }
+  </style>
+</helmet>
+
+<x-import component-from-global-scope="deck-stage" from="./deck-stage.js" width="1920" height="1080" hint-size="100%,100%">
+
+  <section data-label="Титул" data-screen-label="01" data-speaker-notes="Один вопрос вместо представления продукта. Дальше — как этот день превращается в полчаса." style="width: 100%; height: 100%; box-sizing: border-box; padding: 110px 120px; background: var(--gray-900); color: var(--gray-25); font-family: var(--font-sans); display: flex; flex-direction: column; justify-content: space-between;">
+    <div style="font-size: 30px; letter-spacing: -0.03em;"><span style="font-weight: 700;">AMT</span> <span style="font-weight: 400; letter-spacing: -0.01em; color: var(--gray-300);">Systems</span></div>
+    <div>
+      <div style="font-family: var(--font-mono); font-size: 24px; letter-spacing: .06em; text-transform: uppercase; color: var(--steel-300);">ИАС «Закупки» · on-premise</div>
+      <h1 style="margin: 28px 0 0; font-weight: 600; font-size: 88px; line-height: 1.06; letter-spacing: -0.025em; color: var(--gray-25); max-width: 24ch; text-wrap: balance;">Сколько времени уходит на сравнение пяти КП по спецификации</h1>
+      <p style="margin: 32px 0 0; font-size: 32px; line-height: 1.45; color: var(--gray-200); max-width: 52ch;">Обычно — день ручной сверки. Система разбирает файл заказчика как есть и сводит ответы поставщиков в одну таблицу.</p>
+    </div>
+    <div style="display: flex; gap: 56px; font-size: 24px; color: var(--gray-400); font-variant-numeric: tabular-nums;">
+      <span>Спецификации от 100 позиций</span>
+      <span>5+ поставщиков на запрос</span>
+      <span>Данные не покидают периметр</span>
+    </div>
+  </section>
+
+  <section data-label="Где теряется время" data-screen-label="02" data-speaker-notes="Три места потери времени. Ни одно не решается «ещё одним файлом Excel»." style="width: 100%; height: 100%; box-sizing: border-box; padding: 110px 120px; background: var(--gray-50); color: var(--gray-700); font-family: var(--font-sans); display: flex; gap: 96px; align-items: flex-start;">
+    <h2 style="flex: 0 0 420px; margin: 0; font-weight: 600; font-size: 56px; line-height: 1.12; letter-spacing: -0.015em; color: var(--gray-900);">Где теряется время</h2>
+    <div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; border-bottom: 1px solid var(--gray-200);">
+      <div style="padding: 40px 0; border-top: 1px solid var(--gray-200); font-size: 34px; line-height: 1.45; color: var(--gray-700);">Спецификации на 100–2 000 позиций разбираются между 1С, Excel, почтой и личными файлами сотрудников.</div>
+      <div style="padding: 40px 0; border-top: 1px solid var(--gray-200); font-size: 34px; line-height: 1.45; color: var(--gray-700);">Цены, НДС, валюты, скидки и сроки из разных КП сводятся вручную и пересводятся при каждой правке.</div>
+      <div style="padding: 40px 0; border-top: 1px solid var(--gray-200); font-size: 34px; line-height: 1.45; color: var(--gray-700);">Знание о поставщиках и найденных решениях остаётся у отдельных сотрудников и уходит вместе с ними.</div>
+    </div>
+  </section>
+
+  <section data-label="Цель и факт" data-screen-label="03" data-speaker-notes="Два числа — цели, они проверяются пилотом. Третье — факт текущего внедрения. Разницу проговариваем вслух." style="width: 100%; height: 100%; box-sizing: border-box; padding: 110px 120px; background: var(--white); color: var(--gray-700); font-family: var(--font-sans); display: flex; flex-direction: column; justify-content: center; gap: 72px;">
+    <h2 style="margin: 0; font-weight: 600; font-size: 56px; line-height: 1.12; letter-spacing: -0.015em; color: var(--gray-900); max-width: 30ch;">Что мы обещаем и что уже работает</h2>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--gray-200);">
+      <div style="padding: 44px 56px 0 0; border-right: 1px solid var(--gray-200);">
+        <div style="font-family: var(--font-mono); font-size: 22px; letter-spacing: .06em; text-transform: uppercase; color: var(--steel-600);">Цель</div>
+        <div style="margin-top: 20px; font-family: var(--font-mono); font-weight: 600; font-size: 92px; line-height: 1; font-variant-numeric: tabular-nums; color: var(--gray-900);">≥3×</div>
+        <div style="margin-top: 20px; font-size: 28px; line-height: 1.45; color: var(--gray-600);">быстрее обработать спецификацию</div>
+      </div>
+      <div style="padding: 44px 56px; border-right: 1px solid var(--gray-200);">
+        <div style="font-family: var(--font-mono); font-size: 22px; letter-spacing: .06em; text-transform: uppercase; color: var(--steel-600);">Цель</div>
+        <div style="margin-top: 20px; font-family: var(--font-mono); font-weight: 600; font-size: 92px; line-height: 1; font-variant-numeric: tabular-nums; color: var(--gray-900);">≥70%</div>
+        <div style="margin-top: 20px; font-size: 28px; line-height: 1.45; color: var(--gray-600);">позиций сопоставляются автоматически</div>
+      </div>
+      <div style="padding: 44px 0 0 56px;">
+        <div style="font-family: var(--font-mono); font-size: 22px; letter-spacing: .06em; text-transform: uppercase; color: var(--ocher-500);">Факт</div>
+        <div style="margin-top: 20px; font-family: var(--font-mono); font-weight: 600; font-size: 92px; line-height: 1; font-variant-numeric: tabular-nums; color: var(--gray-900);">≈77 000</div>
+        <div style="margin-top: 20px; font-size: 28px; line-height: 1.45; color: var(--gray-600);">записей поставок из 1С работают источником сопоставления</div>
+      </div>
+    </div>
+    <p style="margin: 0; font-size: 26px; line-height: 1.5; color: var(--gray-500); max-width: 80ch;">Обе цели проверяются пилотом на ваших документах, а не обещаются до него.</p>
+  </section>
+
+  <section data-label="Вход: спецификация" data-screen-label="04" data-speaker-notes="Показать, что файл берётся как есть: разделы, подпозиции, сборный узел, пустые ячейки." style="width: 100%; height: 100%; box-sizing: border-box; padding: 100px 120px; background: var(--gray-50); color: var(--gray-700); font-family: var(--font-sans); display: flex; flex-direction: column; gap: 40px;">
+    <div>
+      <h2 style="margin: 0; font-weight: 600; font-size: 56px; line-height: 1.12; letter-spacing: -0.015em; color: var(--gray-900);">Так выглядит вход</h2>
+      <div style="margin-top: 14px; font-size: 26px; color: var(--gray-500);">Файл заказчика: спецификация № 2026-118, узел учёта газа</div>
+    </div>
+    <div style="flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; border-top: 1px solid var(--gray-200); font-size: 26px;">
+      <div style="display: grid; grid-template-columns: 90px minmax(0, 1fr) 300px 100px 100px; gap: 24px; padding: 20px 0; border-bottom: 1px solid var(--gray-200); font-weight: 500; color: var(--gray-900);"><span style="font-family: var(--font-mono);">1</span><span style="grid-column: 2 / -1;">Приборы КИП и автоматики</span></div>
+      <div style="display: grid; grid-template-columns: 90px minmax(0, 1fr) 300px 100px 100px; gap: 24px; padding: 20px 0; border-bottom: 1px solid var(--gray-200); font-family: var(--font-mono); font-variant-numeric: tabular-nums; color: var(--gray-600);"><span>1.1</span><span style="font-family: var(--font-sans); color: var(--gray-700);">Датчик давления Метран-150CG, 0…1,6 МПа, 4-20 мА</span><span>150CG-1.6-M20</span><span style="text-align: right;">6</span><span>шт</span></div>
+      <div style="display: grid; grid-template-columns: 90px minmax(0, 1fr) 300px 100px 100px; gap: 24px; padding: 20px 0; border-bottom: 1px solid var(--gray-200); font-family: var(--font-mono); font-variant-numeric: tabular-nums; color: var(--gray-600);"><span>1.2</span><span style="font-family: var(--font-sans); color: var(--gray-700);">Термопреобразователь сопротивления ТСМУ-205, L=120 мм</span><span>205-120-PT100</span><span style="text-align: right;">8</span><span>шт</span></div>
+      <div style="display: grid; grid-template-columns: 90px minmax(0, 1fr) 300px 100px 100px; gap: 24px; padding: 20px 0; border-bottom: 1px solid var(--gray-200); font-weight: 500; color: var(--gray-900);"><span style="font-family: var(--font-mono);">2</span><span style="grid-column: 2 / -1;">Запорная и регулирующая арматура</span></div>
+      <div style="display: grid; grid-template-columns: 90px minmax(0, 1fr) 300px 100px 100px; gap: 24px; padding: 20px 0; border-bottom: 1px solid var(--gray-200); font-family: var(--font-mono); font-variant-numeric: tabular-nums; color: var(--gray-600);"><span>2.2</span><span style="font-family: var(--font-sans); color: var(--gray-700);">Клапан регулирующий седельный 25ч945нж DN80 PN16 с ЭИМ</span><span>25Ч945НЖ-80</span><span style="text-align: right;">3</span><span>шт</span></div>
+      <div style="display: grid; grid-template-columns: 90px minmax(0, 1fr) 300px 100px 100px; gap: 24px; padding: 20px 0; border-bottom: 1px solid var(--gray-200); font-family: var(--font-mono); font-variant-numeric: tabular-nums; color: var(--ocher-500);"><span>3</span><span style="font-family: var(--font-sans);">Узел редуцирования газа УРГ-50 — сборка из подпозиций</span><span style="color: var(--gray-400);">—</span><span style="text-align: right;">2</span><span>компл</span></div>
+    </div>
+    <p style="margin: 0; font-size: 28px; line-height: 1.45; color: var(--gray-600); max-width: 90ch;">19 строк, шесть колонок, разделы и подпозиции, один сборный узел. Файл разбирается как есть — приводить его к шаблону не нужно.</p>
+  </section>
+
+  <section data-label="Экран сравнения" data-screen-label="05" data-speaker-notes="Главный экран продукта. Зелёным — лучшая цена в строке. Просроченные КП в выборе минимума не участвуют." style="width: 100%; height: 100%; box-sizing: border-box; padding: 100px 120px; background: var(--white); color: var(--gray-700); font-family: var(--font-sans); display: flex; flex-direction: column; gap: 40px;">
+    <div style="display: flex; gap: 64px; align-items: baseline;">
+      <h2 style="margin: 0; font-weight: 600; font-size: 56px; line-height: 1.12; letter-spacing: -0.015em; color: var(--gray-900);">Пять ответов — одна таблица</h2>
+      <div style="font-size: 26px; color: var(--gray-500); font-variant-numeric: tabular-nums;">15 позиций × 5 поставщиков</div>
+    </div>
+    <div style="flex: 1 1 auto; min-height: 0; border: 1px solid var(--gray-200); border-radius: var(--radius-card); overflow: hidden; display: flex;">
+      <img src="img/matrix-crop.png" alt="Экран сравнения коммерческих предложений: позиции спецификации, пять поставщиков, зелёным подсвечено лучшее предложение в строке" style="width: 100%; height: 100%; object-fit: contain; object-position: left top;">
+    </div>
+    <p style="margin: 0; font-size: 26px; line-height: 1.45; color: var(--gray-500); max-width: 90ch;">Зелёным — лучшее предложение по строке, справа минимальная цена с именем поставщика. Данные на снимке демонстрационные.</p>
+  </section>
+
+  <section data-label="Маршрут" data-screen-label="06" data-speaker-notes="Пять шагов — один аудируемый маршрут. Каждый шаг виден в истории действий." style="width: 100%; height: 100%; box-sizing: border-box; padding: 110px 120px; background: var(--gray-50); color: var(--gray-700); font-family: var(--font-sans); display: flex; flex-direction: column; gap: 48px;">
+    <h2 style="margin: 0; font-weight: 600; font-size: 56px; line-height: 1.12; letter-spacing: -0.015em; color: var(--gray-900);">Как работает ИАС</h2>
+    <div style="flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border-top: 1px solid var(--gray-200);">
+      <div style="padding: 40px 40px 0 0; border-right: 1px solid var(--gray-200);">
+        <div style="font-family: var(--font-mono); font-size: 24px; font-variant-numeric: tabular-nums; color: var(--steel-600);">01</div>
+        <div style="margin-top: 24px; font-weight: 600; font-size: 32px; line-height: 1.2; letter-spacing: -0.015em; color: var(--gray-900);">Загрузить Excel или CSV</div>
+        <div style="margin-top: 16px; font-size: 25px; line-height: 1.45; color: var(--gray-600);">Структура файла заказчика может быть любой</div>
+      </div>
+      <div style="padding: 40px; border-right: 1px solid var(--gray-200);">
+        <div style="font-family: var(--font-mono); font-size: 24px; font-variant-numeric: tabular-nums; color: var(--steel-600);">02</div>
+        <div style="margin-top: 24px; font-weight: 600; font-size: 32px; line-height: 1.2; letter-spacing: -0.015em; color: var(--gray-900);">Распознать позиции</div>
+        <div style="margin-top: 16px; font-size: 25px; line-height: 1.45; color: var(--gray-600);">Количества, единицы измерения, иерархия спецификации</div>
+      </div>
+      <div style="padding: 40px; border-right: 1px solid var(--gray-200);">
+        <div style="font-family: var(--font-mono); font-size: 24px; font-variant-numeric: tabular-nums; color: var(--steel-600);">03</div>
+        <div style="margin-top: 24px; font-weight: 600; font-size: 32px; line-height: 1.2; letter-spacing: -0.015em; color: var(--gray-900);">Сопоставить с базой</div>
+        <div style="margin-top: 16px; font-size: 25px; line-height: 1.45; color: var(--gray-600);">Артикулы, нечёткое совпадение, семантика по вашим данным</div>
+      </div>
+      <div style="padding: 40px; border-right: 1px solid var(--gray-200);">
+        <div style="font-family: var(--font-mono); font-size: 24px; font-variant-numeric: tabular-nums; color: var(--steel-600);">04</div>
+        <div style="margin-top: 24px; font-weight: 600; font-size: 32px; line-height: 1.2; letter-spacing: -0.015em; color: var(--gray-900);">Отправить RFQ и разобрать КП</div>
+        <div style="margin-top: 16px; font-size: 25px; line-height: 1.45; color: var(--gray-600);">Отправка от имени сотрудника, статусы, вложения, просрочки</div>
+      </div>
+      <div style="padding: 40px 0 0 40px;">
+        <div style="font-family: var(--font-mono); font-size: 24px; font-variant-numeric: tabular-nums; color: var(--steel-600);">05</div>
+        <div style="margin-top: 24px; font-weight: 600; font-size: 32px; line-height: 1.2; letter-spacing: -0.015em; color: var(--gray-900);">Сравнить и выгрузить Excel</div>
+        <div style="margin-top: 16px; font-size: 25px; line-height: 1.45; color: var(--gray-600);">Цена, НДС, валюта, скидка и срок в сравнимой матрице</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Экран импорта" data-screen-label="07" data-speaker-notes="Шаг 02 в системе: маппинг колонок можно поправить руками. Импорт откатывается полностью." style="width: 100%; height: 100%; box-sizing: border-box; padding: 100px 120px; background: var(--white); color: var(--gray-700); font-family: var(--font-sans); display: flex; gap: 80px; align-items: stretch;">
+    <div style="flex: 0 0 520px; display: flex; flex-direction: column; justify-content: center; gap: 28px;">
+      <h2 style="margin: 0; font-weight: 600; font-size: 52px; line-height: 1.12; letter-spacing: -0.015em; color: var(--gray-900);">Импорт файла как есть</h2>
+      <p style="margin: 0; font-size: 28px; line-height: 1.45; color: var(--gray-600);">Разбор файла, маппинг колонок и предпросмотр строк перед подтверждением. Колонки правятся руками, если структура нестандартная.</p>
+      <p style="margin: 0; font-size: 26px; line-height: 1.45; color: var(--gray-500);">Импорт откатывается полностью, если что-то пошло не так.</p>
+    </div>
+    <div style="flex: 1 1 auto; min-width: 0; border: 1px solid var(--gray-200); border-radius: var(--radius-card); overflow: hidden; display: flex;">
+      <img src="img/import-crop.png" alt="Экран импорта: разобрано 19 строк из 19, маппинг колонок и предпросмотр распознанных позиций" style="width: 100%; height: 100%; object-fit: contain; object-position: center top;">
+    </div>
+  </section>
+
+  <section data-label="База КП" data-screen-label="08" data-speaker-notes="Срок действия, валюта, признак НДС. Просроченные предложения не участвуют в выборе минимума." style="width: 100%; height: 100%; box-sizing: border-box; padding: 100px 120px; background: var(--gray-50); color: var(--gray-700); font-family: var(--font-sans); display: flex; flex-direction: column; gap: 40px;">
+    <div>
+      <h2 style="margin: 0; font-weight: 600; font-size: 56px; line-height: 1.12; letter-spacing: -0.015em; color: var(--gray-900);">База КП вместо переписки в почте</h2>
+      <div style="margin-top: 14px; font-size: 26px; color: var(--gray-500);">Газовое машиностроение · промышленная эксплуатация с апреля 2026</div>
+    </div>
+    <div style="flex: 1 1 auto; min-height: 0; border: 1px solid var(--gray-200); border-radius: var(--radius-card); overflow: hidden; display: flex; background: var(--white);">
+      <img src="img/registry-crop.png" alt="База КП: поставщик, дата и срок действия, валюта, признак НДС и число позиций" style="width: 100%; height: 100%; object-fit: contain; object-position: left top;">
+    </div>
+    <p style="margin: 0; font-size: 26px; line-height: 1.45; color: var(--gray-500); max-width: 100ch;">Срок действия с пометкой просроченных, валюта и признак НДС — «как в файле» или пересчитано. Просроченные предложения не участвуют в выборе минимальной цены.</p>
+  </section>
+
+  <section data-label="Кому подходит" data-screen-label="09" data-speaker-notes="Механика одна, роль в сделке разная. Спросить, на какой стороне слушатель." style="width: 100%; height: 100%; box-sizing: border-box; padding: 110px 120px; background: var(--white); color: var(--gray-700); font-family: var(--font-sans); display: flex; flex-direction: column; gap: 48px;">
+    <div>
+      <h2 style="margin: 0; font-weight: 600; font-size: 56px; line-height: 1.12; letter-spacing: -0.015em; color: var(--gray-900);">Два процесса, одна механика спецификаций</h2>
+      <p style="margin: 18px 0 0; font-size: 28px; line-height: 1.45; color: var(--gray-600); max-width: 80ch;">Разобрать многострочную потребность, свести цены и отдать результат в Excel. Роль в сделке различается.</p>
+    </div>
+    <div style="flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px;">
+      <div style="border: 1px solid var(--gray-200); border-radius: var(--radius-card); padding: 56px; display: flex; flex-direction: column; gap: 24px;">
+        <div style="font-weight: 600; font-size: 40px; line-height: 1.2; letter-spacing: -0.015em; color: var(--gray-900);">Вы отвечаете на спецификацию заказчика</div>
+        <p style="margin: 0; font-size: 28px; line-height: 1.45; color: var(--gray-600);">Тендерный отдел поставщика или подрядчика: на спецификацию нужно быстро дать цену или технико-коммерческое предложение — с проверенными позициями и сроками.</p>
+        <div style="margin-top: auto; font-size: 26px; font-weight: 500; color: var(--steel-600);">Быстрее дать цену заказчику</div>
+      </div>
+      <div style="border: 1px solid var(--gray-200); border-radius: var(--radius-card); padding: 56px; display: flex; flex-direction: column; gap: 24px;">
+        <div style="font-weight: 600; font-size: 40px; line-height: 1.2; letter-spacing: -0.015em; color: var(--gray-900);">Вы рассылаете спецификацию поставщикам</div>
+        <p style="margin: 0; font-size: 28px; line-height: 1.45; color: var(--gray-600);">Отдел закупок или снабжения: многострочная потребность распределяется по своей базе поставщиков — десятки RFQ, ответы в разных форматах, ручное сведение условий.</p>
+        <div style="margin-top: auto; font-size: 26px; font-weight: 500; color: var(--steel-600);">Быстрее собрать рынок по своей базе</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Границы" data-screen-label="10" data-speaker-notes="Проговорить границы до сделки. Отдельно — что внедрение может быть не нужно." style="width: 100%; height: 100%; box-sizing: border-box; padding: 110px 120px; background: var(--gray-50); color: var(--gray-700); font-family: var(--font-sans); display: flex; gap: 96px; align-items: flex-start;">
+    <div style="flex: 0 0 420px;">
+      <h2 style="margin: 0; font-weight: 600; font-size: 56px; line-height: 1.12; letter-spacing: -0.015em; color: var(--gray-900);">Честные границы</h2>
+      <p style="margin: 20px 0 0; font-size: 28px; line-height: 1.45; color: var(--gray-600);">Мы говорим об этом до сделки, а не после.</p>
+      <p style="margin: 32px 0 0; font-size: 24px; line-height: 1.5; color: var(--gray-500);">≥3× и ≥70% — цели, подтверждаемые пилотом на ваших документах, а не гарантия результата.</p>
+    </div>
+    <div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; border-bottom: 1px solid var(--gray-200);">
+      <div style="padding: 34px 0; border-top: 1px solid var(--gray-200); font-size: 32px; line-height: 1.45;">Не ищет новых поставщиков во внешнем интернете — работает по вашей базе.</div>
+      <div style="padding: 34px 0; border-top: 1px solid var(--gray-200); font-size: 32px; line-height: 1.45;">Не заменяет 1С, CRM и ЭТП и не обосновывает НМЦК.</div>
+      <div style="padding: 34px 0; border-top: 1px solid var(--gray-200); font-size: 32px; line-height: 1.45;">Прямого коннектора к 1С пока нет: данные приходят выгрузкой в Excel или CSV.</div>
+      <div style="padding: 34px 0; border-top: 1px solid var(--gray-200); font-size: 32px; line-height: 1.45;"><span style="color: var(--ocher-500); font-weight: 500;">Внедрение не нужно</span>, если у вас два поставщика и спецификация на 20 строк: Excel справляется.</div>
+    </div>
+  </section>
+
+  <section data-label="On-premise" data-screen-label="11" data-speaker-notes="Единственный тёмный слайд после титула — контур заказчика. Здесь же 152-ФЗ и 242-ФЗ, если спросят." style="width: 100%; height: 100%; box-sizing: border-box; padding: 110px 120px; background: var(--gray-900); color: var(--gray-25); font-family: var(--font-sans); display: flex; flex-direction: column; justify-content: center; gap: 56px;">
+    <div>
+      <h2 style="margin: 0; font-weight: 600; font-size: 64px; line-height: 1.1; letter-spacing: -0.02em; color: var(--gray-25); max-width: 30ch;">Корпоративный контур on-premise</h2>
+      <p style="margin: 28px 0 0; font-size: 32px; line-height: 1.45; color: var(--gray-200); max-width: 70ch;">Спецификации, цены и переписка с поставщиками — коммерческая тайна. Система живёт внутри вашего периметра.</p>
+    </div>
+    <div style="display: flex; flex-direction: column; border-bottom: 1px solid var(--gray-700);">
+      <div style="padding: 32px 0; border-top: 1px solid var(--gray-700); font-size: 32px; line-height: 1.45; color: var(--gray-100);">Данные не покидают периметр заказчика.</div>
+      <div style="padding: 32px 0; border-top: 1px solid var(--gray-700); font-size: 32px; line-height: 1.45; color: var(--gray-100);">Доменные учётные записи, аудит отправок и история действий.</div>
+      <div style="padding: 32px 0; border-top: 1px solid var(--gray-700); font-size: 32px; line-height: 1.45; color: var(--gray-100);">Офлайн-поставка обновлений для изолированных контуров.</div>
+    </div>
+    <p style="margin: 0; font-size: 26px; line-height: 1.5; color: var(--gray-300); max-width: 90ch;">Источники знания: выгрузки из 1С, справочники, прошлые КП, ручные привязки и корпоративная почта.</p>
+  </section>
+
+  <section data-label="Внедрение" data-screen-label="12" data-speaker-notes="Четыре шага. Первый — тот, который предлагаем сейчас: разбор на 30–45 минут." style="width: 100%; height: 100%; box-sizing: border-box; padding: 110px 120px; background: var(--white); color: var(--gray-700); font-family: var(--font-sans); display: flex; flex-direction: column; gap: 48px;">
+    <h2 style="margin: 0; font-weight: 600; font-size: 56px; line-height: 1.12; letter-spacing: -0.015em; color: var(--gray-900);">Как мы поставляем систему</h2>
+    <div style="flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--gray-200);">
+      <div style="padding: 44px 48px 0 0; border-right: 1px solid var(--gray-200);">
+        <div style="font-family: var(--font-mono); font-size: 24px; font-variant-numeric: tabular-nums; color: var(--steel-600);">01</div>
+        <div style="margin-top: 24px; font-weight: 600; font-size: 34px; line-height: 1.2; letter-spacing: -0.015em; color: var(--gray-900);">Разбор спецификации</div>
+        <div style="margin-top: 18px; font-size: 26px; line-height: 1.45; color: var(--gray-600);">30–45 минут и одна обезличенная спецификация. На выходе: карта процесса, список данных и интеграций, границы scope, критерии пилота.</div>
+      </div>
+      <div style="padding: 44px 48px; border-right: 1px solid var(--gray-200);">
+        <div style="font-family: var(--font-mono); font-size: 24px; font-variant-numeric: tabular-nums; color: var(--steel-600);">02</div>
+        <div style="margin-top: 24px; font-weight: 600; font-size: 34px; line-height: 1.2; letter-spacing: -0.015em; color: var(--gray-900);">Платный пилот</div>
+        <div style="margin-top: 18px; font-size: 26px; line-height: 1.45; color: var(--gray-600);">Измеримый результат на ваших документах и вашем процессе, а не на демо-данных.</div>
+      </div>
+      <div style="padding: 44px 48px; border-right: 1px solid var(--gray-200);">
+        <div style="font-family: var(--font-mono); font-size: 24px; font-variant-numeric: tabular-nums; color: var(--steel-600);">03</div>
+        <div style="margin-top: 24px; font-weight: 600; font-size: 34px; line-height: 1.2; letter-spacing: -0.015em; color: var(--gray-900);">Внедрение</div>
+        <div style="margin-top: 18px; font-size: 26px; line-height: 1.45; color: var(--gray-600);">Справочники, шаблоны, роли, загрузка выгрузок из 1С, интеграция с корпоративной почтой, инфраструктурные правила заказчика.</div>
+      </div>
+      <div style="padding: 44px 0 0 48px;">
+        <div style="font-family: var(--font-mono); font-size: 24px; font-variant-numeric: tabular-nums; color: var(--steel-600);">04</div>
+        <div style="margin-top: 24px; font-weight: 600; font-size: 34px; line-height: 1.2; letter-spacing: -0.015em; color: var(--gray-900);">Годовая подписка</div>
+        <div style="margin-top: 18px; font-size: 26px; line-height: 1.45; color: var(--gray-600);">Лицензия, поддержка, совместимость и общепродуктовые обновления. Уникальные интеграции оцениваются отдельно.</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Следующий шаг" data-screen-label="13" data-speaker-notes="Целевое действие: разбор на 30–45 минут с обезличенной спецификацией. Не тариф и не триал." style="width: 100%; height: 100%; box-sizing: border-box; padding: 120px; background: var(--steel-600); color: var(--white); font-family: var(--font-sans); display: flex; flex-direction: column; justify-content: space-between;">
+    <div>
+      <div style="font-family: var(--font-mono); font-size: 24px; letter-spacing: .06em; text-transform: uppercase; color: var(--steel-100);">Следующий шаг</div>
+      <h2 style="margin: 32px 0 0; font-weight: 600; font-size: 84px; line-height: 1.06; letter-spacing: -0.025em; max-width: 26ch; text-wrap: balance;">Начнём с одной обезличенной спецификации</h2>
+      <p style="margin: 36px 0 0; font-size: 32px; line-height: 1.45; color: var(--steel-50); max-width: 62ch;">На выходе: карта вашего процесса, список данных и интеграций, границы scope и измеримые критерии пилота. Без обещаний до проверки на ваших данных.</p>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 24px 72px; align-items: flex-end; justify-content: space-between;">
+      <div style="font-size: 26px; line-height: 1.5; color: var(--steel-50); max-width: 54ch;">Спецификацию присылайте обезличенной: без наименований контрагентов и персональных данных сотрудников.</div>
+      <div style="font-size: 30px; font-variant-numeric: tabular-nums;">info@amt-systems.ru · +7 000 000-00-00</div>
+    </div>
+  </section>
+
+</x-import>
+</x-dc>
+</body>
+</html>
