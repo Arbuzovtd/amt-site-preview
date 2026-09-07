@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noindex, nofollow">
+<title>ИАС «Закупки» — 3D</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%232A5D96%22/%3E%3Ctext x=%2216%22 y=%2222%22 font-family=%22monospace%22 font-size=%2216%22 font-weight=%22600%22 fill=%22white%22 text-anchor=%22middle%22%3EA%3C/text%3E%3C/svg%3E">
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/amt-systems-design-system-37494380-5a6d-47f8-a815-972111a7630b/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/amt-systems-design-system-37494380-5a6d-47f8-a815-972111a7630b/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/amt-systems-design-system-37494380-5a6d-47f8-a815-972111a7630b/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/amt-systems-design-system-37494380-5a6d-47f8-a815-972111a7630b/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/amt-systems-design-system-37494380-5a6d-47f8-a815-972111a7630b/tokens/shape.css">
+  <link rel="stylesheet" href="_ds/amt-systems-design-system-37494380-5a6d-47f8-a815-972111a7630b/tokens/elevation.css">
+  <link rel="stylesheet" href="_ds/amt-systems-design-system-37494380-5a6d-47f8-a815-972111a7630b/tokens/motion.css">
+  <link rel="stylesheet" href="_ds/amt-systems-design-system-37494380-5a6d-47f8-a815-972111a7630b/tokens/base.css">
+  <link rel="stylesheet" href="_ds/amt-systems-design-system-37494380-5a6d-47f8-a815-972111a7630b/styles.css">
+  <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+  <script>
+    // Бандл дизайн-системы вычисляется только после того, как React стал глобальным:
+    // Icon.jsx иначе падает, а вместе с ним Button и PriceDelta (React error #130).
+    (function () {
+      var src = '_ds/amt-systems-design-system-37494380-5a6d-47f8-a815-972111a7630b/_ds_bundle.js';
+      function load() {
+        if (document.querySelector('script[data-ds-bundle]')) return;
+        var s = document.createElement('script');
+        s.src = src; s.setAttribute('data-ds-bundle', '');
+        document.head.appendChild(s);
+      }
+      (function wait() {
+        if (window.React && window.ReactDOM) return load();
+        setTimeout(wait, 16);
+      })();
+    })();
+  </script>
+  <style>
+    body { font-size: 15px; }
+    /* Тема страницы: примитивы системы те же, меняется только семантическая раскладка. */
+    /* Статусные плашки и Δ рисуются своими токенами: компоненты системы берут
+       примитивы рампы напрямую и в тёмной теме остаются светлыми. */
+    [data-theme] {
+      --pill-info-bg: var(--steel-50); --pill-info-fg: var(--steel-700); --pill-info-dot: var(--steel-400);
+      --pill-warn-bg: var(--ocher-50); --pill-warn-fg: var(--ocher-500); --pill-warn-dot: var(--ocher-300);
+      --pill-danger-bg: var(--red-50); --pill-danger-fg: var(--red-600); --pill-danger-dot: var(--red-500);
+      --pill-neutral-bg: var(--gray-100); --pill-neutral-fg: var(--gray-700); --pill-neutral-dot: var(--gray-400);
+    }
+    [data-theme="dark"] {
+      --pill-info-bg: var(--steel-900); --pill-info-fg: var(--steel-200); --pill-info-dot: var(--steel-300);
+      --pill-warn-bg: #2A2113; --pill-warn-fg: var(--ocher-200); --pill-warn-dot: var(--ocher-300);
+      --pill-danger-bg: #331416; --pill-danger-fg: var(--red-300); --pill-danger-dot: var(--red-300);
+      --pill-neutral-bg: var(--gray-800); --pill-neutral-fg: var(--gray-200); --pill-neutral-dot: var(--gray-500);
+    }
+    [data-theme] { --page-header-bg: rgb(255 255 255 / .92); }
+    [data-theme="dark"] {
+      --surface-canvas: var(--gray-950); --surface-card: var(--gray-900); --surface-raised: var(--gray-800);
+      --surface-sunken: var(--gray-950); --surface-subtle: #14171C; --surface-hover: var(--gray-800);
+      --surface-active: var(--gray-700); --surface-selected: var(--steel-900); --surface-header: var(--gray-800);
+      --surface-accent: var(--steel-700); --surface-attention: #2A2113;
+      --text-primary: var(--gray-25); --text-body: var(--gray-100); --text-secondary: var(--gray-300);
+      --text-muted: var(--gray-400); --text-accent: var(--steel-300); --text-attention: var(--ocher-200);
+      --text-link: var(--steel-300); --text-link-hover: var(--steel-200);
+      --text-success: var(--green-300); --text-danger: var(--red-300);
+      --border-hairline: var(--gray-800); --border-default: var(--gray-700); --border-strong: var(--gray-600);
+      --border-on-dark: var(--gray-700); --border-field: var(--gray-700);
+      --action-primary: var(--steel-500); --action-primary-hover: var(--steel-400); --action-secondary-bg: var(--gray-800); --action-secondary-hover: var(--gray-700);
+      --table-header-bg: var(--gray-800); --table-row-alt: #14171C; --table-row-hover: var(--gray-800);
+      --table-grid-line: var(--gray-800); --table-total-bg: var(--gray-800); --table-row-selected: var(--steel-900);
+      --selection-bg: var(--steel-700); --selection-text: var(--white);
+      --scrollbar-track: var(--gray-900); --scrollbar-thumb: var(--gray-700); --scrollbar-thumb-hover: var(--gray-600);
+      --page-header-bg: rgb(14 16 20 / .84);
+      color-scheme: dark;
+    }
+    /* Глубина объявляется один раз: панель держится волосяной границей, без тени. */
+    [data-panel] { position: relative; border-radius: var(--radius-card); overflow: hidden; background: var(--surface-card); border: 1px solid var(--border-hairline); }
+    [data-progress] { position: fixed; left: 0; right: 0; top: 0; z-index: 60; height: 2px; pointer-events: none; }
+    [data-progress-fill] { height: 100%; background: var(--action-primary); transform: scaleX(0); transform-origin: left center; }
+    [data-progress-counter] { position: fixed; z-index: 60; right: 16px; bottom: 16px; display: inline-flex; align-items: center; gap: 8px; height: 26px; padding: 0 10px; border-radius: var(--radius-control); background: var(--page-header-bg); backdrop-filter: blur(10px); border: 1px solid var(--border-hairline); font-family: var(--font-mono); font-size: 11px; font-variant-numeric: tabular-nums; color: var(--text-secondary); }
+    @media (max-width: 940px) { [data-progress-counter] { bottom: 72px; } }
+    [data-themetoggle] { transition: color var(--dur-hover) var(--ease-standard), border-color var(--dur-hover) var(--ease-standard); }
+    /* Единственный авторский момент страницы: строка «дорешивается» слева направо —
+       как позиция спецификации, которую система разобрала. Один раз, при входе. */
+    @keyframes amtResolve { from { clip-path: inset(0 100% 0 0); opacity: .5; } to { clip-path: inset(0 0 0 0); opacity: 1; } }
+    [data-resolve] { animation: amtResolve 240ms var(--ease-out) both; }
+    [data-press] { transition: var(--transition-hover), var(--transition-press); }
+    [data-press]:active { transform: scale(var(--press-scale)); }
+    [data-ind] { transition: transform var(--dur-drawer) var(--ease-in-out); transform-origin: top left; }
+    @media (hover: hover) and (pointer: fine) {
+      [data-step]:hover { background: var(--surface-hover); }
+      [data-q]:hover { background: var(--surface-hover); }
+      [data-q]:hover [data-qmark] { color: var(--text-accent); }
+      [data-step]:hover [data-chev] { color: var(--text-accent); }
+      [data-seg]:hover { border-color: var(--border-strong); }
+      [data-navlink]:hover { color: var(--text-primary); }
+      [data-cta-ghost]:hover { background: rgb(255 255 255 / .10); }
+    }
+    [data-chev] { transition: color var(--dur-hover) var(--ease-standard); }
+    [data-q] { transition: background var(--dur-hover) var(--ease-standard); }
+    [data-qmark] { transition: color var(--dur-hover) var(--ease-standard); }
+    [data-seg] { transition: border-color var(--dur-hover) var(--ease-standard); }
+    /* Таблицы читаются строками, а не клеткой: вертикальных линий нет,
+       строки разделяет одна волосяная граница, крайние столбцы не упираются в рамку панели. */
+    [data-tbl] th, [data-tbl] td { border-right: 0 !important; }
+    [data-tbl] table { table-layout: fixed; }
+    [data-tbl] th:first-child, [data-tbl] td:first-child { padding-left: 16px !important; }
+    [data-tbl] th:last-child, [data-tbl] td:last-child { padding-right: 16px !important; }
+    [data-tbl] thead th { border-bottom: 1px solid var(--border-hairline) !important; background: var(--surface-card) !important; color: var(--text-muted) !important; }
+    [data-mobilecta] { display: none; }
+    [data-nav] { display: flex; }
+    @media (max-width: 940px) {
+      [data-nav], [data-headercta] { display: none; }
+      [data-mobilecta] { display: flex; }
+      /* Cookie-плашка встаёт над мобильной CTA, а не поверх неё. */
+      [data-cookiebar] { --cookiebar-bottom: 68px; }
+      body { padding-bottom: 64px; }
+      [data-pad] { padding-left: 20px; padding-right: 20px; }
+    }
+    /* Альтернативный режим «объёмный»: курсор ведёт свет и волну, секции приходят с глубины.
+       Содержание и вёрстка те же — меняется только слой света и движение. */
+    /* Режим «3D»: тёмная сцена, частицы собираются в знак, дальше всё ведёт скролл. */
+    [data-scene] { display: none; }
+    [data-visual="3D"] [data-scene] { display: block; position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+    [data-visual="3D"] { background: #0B0D11 !important; }
+    [data-visual="3D"] section, [data-visual="3D"] footer, [data-visual="3D"] header { position: relative; z-index: 1; }
+    [data-visual="3D"] [data-hero] { min-height: 92vh; align-items: center; }
+    [data-visual="3D"] [data-reveal] { opacity: 0; transform: translate3d(0, 34px, 0);
+      transition: opacity 700ms cubic-bezier(.16,1,.3,1), transform 900ms cubic-bezier(.16,1,.3,1); }
+    [data-visual="3D"] [data-reveal][data-in] { opacity: 1; transform: none; }
+    @media (max-width: 940px) {
+      /* Частицы слишком тяжелы для мобильного GPU: остаётся статичный знак и обычный fade. */
+      [data-visual="3D"] [data-hero] { min-height: 0; }
+    }
+    [data-aura] { display: none; }
+    [data-visual="объёмный"] [data-aura] { display: block; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(420px 420px at var(--mx, 50%) var(--my, 40%), rgb(42 93 150 / .16), transparent 68%),
+        radial-gradient(900px 900px at var(--lx, 50%) var(--ly, 40%), rgb(42 93 150 / .07), transparent 70%); }
+    [data-visual="объёмный"][data-theme="dark"] [data-aura] {
+      background:
+        radial-gradient(420px 420px at var(--mx, 50%) var(--my, 40%), rgb(120 172 232 / .20), transparent 68%),
+        radial-gradient(900px 900px at var(--lx, 50%) var(--ly, 40%), rgb(120 172 232 / .09), transparent 70%); }
+    [data-visual="объёмный"] [data-wave] { display: block; position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .5;
+      background: repeating-radial-gradient(circle at var(--lx, 50%) var(--ly, 40%), transparent 0 58px, rgb(42 93 150 / .075) 58px 59px);
+      mask-image: radial-gradient(560px 560px at var(--lx, 50%) var(--ly, 40%), #000, transparent 72%); }
+    [data-wave] { display: none; }
+    [data-visual="объёмный"] section, [data-visual="объёмный"] footer { position: relative; z-index: 1; }
+    [data-visual="объёмный"] [data-reveal] { opacity: 0; transform: translate3d(0, 26px, 0) scale(.988);
+      transition: opacity 520ms var(--ease-out), transform 620ms var(--ease-out); }
+    [data-visual="объёмный"] [data-reveal][data-in] { opacity: 1; transform: none; }
+    [data-visual="объёмный"] [data-panel] { transform: perspective(1600px) rotateX(calc(var(--ty, 0) * -2.2deg)) rotateY(calc(var(--tx, 0) * 3deg));
+      transition: transform 380ms var(--ease-out), box-shadow 380ms var(--ease-out);
+      box-shadow: 0 2px 6px rgb(14 16 20 / .05), 0 34px 70px -28px rgb(14 16 20 / .30); }
+    [data-visual="объёмный"] [data-seg] { transition: transform 260ms var(--ease-out), border-color var(--dur-hover) var(--ease-standard), box-shadow 260ms var(--ease-out); }
+    @media (hover: hover) and (pointer: fine) {
+      [data-visual="объёмный"] [data-seg]:hover { transform: translate3d(0, -3px, 0); box-shadow: 0 18px 40px -22px rgb(14 16 20 / .34); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      [data-resolve] { animation: none; clip-path: none; opacity: 1; }
+      [data-ind] { transition: none; }
+      [data-visual="объёмный"] [data-reveal] { opacity: 1; transform: none; transition: none; }
+      [data-visual="объёмный"] [data-panel] { transform: none; transition: none; }
+      [data-visual="объёмный"] [data-wave] { display: none; }
+    }
+  </style>
+</helmet>
+
+<div data-theme="{{ theme }}" data-visual="{{ visual }}" ref="{{ rootRef }}" style="position: relative; background: var(--surface-canvas); color: var(--text-body); font-family: var(--font-sans);">
+
+  <canvas data-scene="" ref="{{ sceneRef }}" aria-hidden="true"></canvas>
+  <div data-aura="" aria-hidden="true"></div>
+  <div data-wave="" aria-hidden="true"></div>
+
+  <sc-if value="{{ showProgress }}" hint-placeholder-val="{{ true }}">
+    <div data-progress="" aria-hidden="true"><div data-progress-fill="" ref="{{ barRef }}"></div></div>
+  </sc-if>
+  <sc-if value="{{ showCounter }}" hint-placeholder-val="{{ false }}">
+    <div data-progress-counter="" aria-hidden="true"><span ref="{{ pctRef }}">0%</span></div>
+  </sc-if>
+
+  <header data-pad="" style="position: sticky; top: 0; z-index: 40; height: 56px; display: flex; align-items: center; gap: 32px; padding: 0 40px; background: var(--page-header-bg); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-hairline);">
+    <a href="#top" style="text-decoration: none; color: var(--text-primary); letter-spacing: -0.03em; font-size: 17px; flex: none;"><span style="font-weight: 700;">AMT</span> <span style="font-weight: 400; letter-spacing: -0.01em;">Systems</span></a>
+    <nav data-nav="" style="min-width: 0; gap: 24px; font: var(--type-label);">
+      <a data-navlink="" href="#route" style="color: var(--text-primary); text-decoration: none;">Продукт</a>
+      <a data-navlink="" href="#segments" style="color: var(--text-secondary); text-decoration: none;">Кому подходит</a>
+      <a data-navlink="" href="#delivery" style="color: var(--text-secondary); text-decoration: none;">Внедрение</a>
+      <a data-navlink="" href="#case" style="color: var(--text-secondary); text-decoration: none;">Внедрения</a>
+      <a data-navlink="" href="#limits" style="color: var(--text-secondary); text-decoration: none;">Границы</a>
+      <a data-navlink="" href="#faq" style="color: var(--text-secondary); text-decoration: none;">Вопросы</a>
+    </nav>
+    <button data-themetoggle="" data-press="" onClick="{{ toggleTheme }}" aria-label="Переключить тему" style="margin-left: auto; flex: none; display: inline-flex; align-items: center; height: 28px; padding: 0 10px; gap: 6px; cursor: pointer; background: transparent; border: 1px solid var(--border-hairline); border-radius: var(--radius-control); font-family: var(--font-mono); font-size: 11px; letter-spacing: .04em; text-transform: uppercase; color: var(--text-secondary);">{{ themeLabel }}</button>
+    <div data-headercta="" style="flex: none;">
+      <x-import component-from-global-scope="AMTSystemsDesignSystem_374943.Button" variant="primary" size="md" onClick="{{ goCta }}" hint-size="auto,32px">Записаться на разбор</x-import>
+    </div>
+  </header>
+
+  <section id="top" data-pad="" style="padding: 72px 40px 56px; overflow-x: clip;">
+    <div data-hero="" style="max-width: var(--content-max); margin: 0 auto; display: flex; flex-direction: column; gap: 44px; align-items: stretch;">
+      <div style="min-width: 0;">
+        <h1 style="margin: 0; font-weight: 600; font-size: clamp(32px, 4vw, 52px); line-height: 1.08; letter-spacing: var(--tracking-display); color: var(--text-primary); text-wrap: balance; max-width: 20ch">Сколько времени уходит на сравнение пяти КП по спецификации</h1>
+        <p style="margin: 20px 0 0; font-size: 17px; line-height: var(--leading-normal); color: var(--text-body); max-width: 48ch; text-wrap: pretty;">Обычно — день ручной сверки. Система разбирает файл заказчика как есть и сводит ответы поставщиков в одну таблицу.</p>
+        <div style="margin-top: 28px;">
+          <x-import component-from-global-scope="AMTSystemsDesignSystem_374943.Button" variant="primary" size="lg" icon-right="arrow-right" onClick="{{ goCta }}" hint-size="auto,40px">Записаться на разбор</x-import>
+        </div>
+        <p style="margin: 16px 0 0; font: var(--type-body-sm); color: var(--text-muted); max-width: 46ch;">30–45 минут, одна обезличенная спецификация. <a href="#route" style="color: var(--text-secondary);">Как работает система</a></p>
+      </div>
+
+      <div style="position: relative; min-width: 0;">
+
+
+        <div data-resolve="" style="min-width: 0;">
+          <div style="border: 1px solid var(--border-hairline); border-radius: var(--radius-card); overflow: hidden; line-height: 0;">
+            <img src="img/matrix-crop.png" alt="Экран сравнения коммерческих предложений: позиции спецификации, пять поставщиков, зелёным подсвечено лучшее предложение в строке" style="display: block; width: 100%; height: auto;">
+          </div>
+          <div style="margin-top: 10px; font: var(--type-caption); color: var(--text-muted);">Экран сравнения: 15 позиций × 5 поставщиков, показаны первые шесть строк. Данные демонстрационные.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section data-pad="" style="padding: 0 40px 56px;">
+    <div style="max-width: var(--content-max); margin: 0 auto; display: flex; flex-wrap: wrap; gap: 16px 48px; padding: 22px 0; border-top: 1px solid var(--border-hairline); border-bottom: 1px solid var(--border-hairline);">
+      <p style="flex: 1 1 420px; min-width: 0; margin: 0; font-size: 16px; line-height: var(--leading-normal); color: var(--text-body); max-width: 68ch; text-wrap: pretty;"><span style="color: var(--text-accent); font-weight: 500;">Цель внедрения:</span> обработать спецификацию в <span style="font-family: var(--font-mono); font-weight: 500; font-variant-numeric: tabular-nums; color: var(--text-primary);">≥3×</span> быстрее и сопоставлять <span style="font-family: var(--font-mono); font-weight: 500; font-variant-numeric: tabular-nums; color: var(--text-primary);">≥70%</span> позиций автоматически. Обе цели проверяются пилотом на ваших документах, а не обещаются до него.</p>
+      <p style="flex: 1 1 320px; min-width: 0; margin: 0; font-size: 16px; line-height: var(--leading-normal); color: var(--text-body); max-width: 52ch; text-wrap: pretty;"><span style="color: var(--text-attention); font-weight: 500;">Факт:</span> <span style="font-family: var(--font-mono); font-weight: 500; font-variant-numeric: tabular-nums; color: var(--text-primary);">≈77 000</span> записей поставок, выгруженных из 1С, работают источником сопоставления в текущем внедрении.</p>
+    </div>
+  </section>
+
+  <section data-pad="" style="padding: 8px 40px 56px;">
+    <div style="max-width: var(--content-max); margin: 0 auto; display: flex; flex-wrap: wrap; gap: 24px 56px;">
+      <h2 style="flex: 0 1 300px; margin: 0; font-weight: 600; font-size: clamp(24px, 2.4vw, 32px); line-height: 1.15; letter-spacing: var(--tracking-heading); color: var(--text-primary);">Так выглядит вход</h2>
+      <div style="flex: 1 1 520px; min-width: 0;">
+        <div style="font: var(--type-caption); color: var(--text-muted);">Файл заказчика: спецификация № 2026-118, узел учёта газа</div>
+        <div style="margin-top: 10px; display: flex; flex-direction: column; border-top: 1px solid var(--border-hairline); font-size: 13px;">
+          <div style="display: grid; grid-template-columns: 44px minmax(0, 1fr) 132px 48px 44px; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--border-hairline); font-weight: 500; color: var(--text-primary);"><span style="font-family: var(--font-mono);">1</span><span style="grid-column: 2 / -1;">Приборы КИП и автоматики</span></div>
+          <div style="display: grid; grid-template-columns: 44px minmax(0, 1fr) 132px 48px 44px; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--border-hairline); font-family: var(--font-mono); font-variant-numeric: tabular-nums; color: var(--text-secondary);"><span>1.1</span><span style="font-family: var(--font-sans); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text-body);">Датчик давления Метран-150CG, 0…1,6 МПа, 4-20 мА</span><span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">150CG-1.6-M20</span><span style="text-align: right;">6</span><span>шт</span></div>
+          <div style="display: grid; grid-template-columns: 44px minmax(0, 1fr) 132px 48px 44px; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--border-hairline); font-family: var(--font-mono); font-variant-numeric: tabular-nums; color: var(--text-secondary);"><span>1.2</span><span style="font-family: var(--font-sans); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text-body);">Термопреобразователь сопротивления ТСМУ-205, L=120 мм</span><span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">205-120-PT100</span><span style="text-align: right;">8</span><span>шт</span></div>
+          <div style="display: grid; grid-template-columns: 44px minmax(0, 1fr) 132px 48px 44px; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--border-hairline); font-weight: 500; color: var(--text-primary);"><span style="font-family: var(--font-mono);">2</span><span style="grid-column: 2 / -1;">Запорная и регулирующая арматура</span></div>
+          <div style="display: grid; grid-template-columns: 44px minmax(0, 1fr) 132px 48px 44px; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--border-hairline); font-family: var(--font-mono); font-variant-numeric: tabular-nums; color: var(--text-secondary);"><span>2.2</span><span style="font-family: var(--font-sans); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text-body);">Клапан регулирующий седельный 25ч945нж DN80 PN16 с ЭИМ</span><span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">25Ч945НЖ-80</span><span style="text-align: right;">3</span><span>шт</span></div>
+          <div style="display: grid; grid-template-columns: 44px minmax(0, 1fr) 132px 48px 44px; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--border-hairline); font-family: var(--font-mono); font-variant-numeric: tabular-nums; color: var(--text-attention);"><span>3</span><span style="font-family: var(--font-sans); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Узел редуцирования газа УРГ-50 — сборка из подпозиций</span><span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text-muted);">—</span><span style="text-align: right;">2</span><span>компл</span></div>
+        </div>
+        <p style="margin: 12px 0 0; font-size: 15px; line-height: var(--leading-normal); color: var(--text-body); max-width: 66ch;">19 строк, шесть колонок, разделы и подпозиции, один сборный узел. Файл разбирается как есть — приводить его к шаблону не нужно.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="segments" data-pad="" style="padding: 8px 40px 56px;">
+    <div style="max-width: var(--content-max); margin: 0 auto;">
+      <h2 style="margin: 0 0 8px; font-weight: 600; font-size: clamp(24px, 2.4vw, 32px); line-height: 1.15; letter-spacing: var(--tracking-heading); color: var(--text-primary);">Два процесса, одна механика спецификаций</h2>
+      <p style="margin: 0 0 24px; font-size: 16px; color: var(--text-secondary); max-width: 62ch;">Механика одна: разобрать многострочную потребность, свести цены и отдать результат в Excel. Роль в сделке различается.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+        <a data-seg="" href="#route" style="flex: 1 1 380px; min-width: 0; display: block; text-decoration: none; color: inherit; background: var(--surface-card); border: 1px solid var(--border-hairline); border-radius: var(--radius-card); padding: 28px;">
+          <div style="font-weight: 600; font-size: 22px; line-height: 1.2; letter-spacing: var(--tracking-heading); color: var(--text-primary);">Вы отвечаете на спецификацию заказчика</div>
+          <p style="margin: 12px 0 0; font-size: 15px; line-height: var(--leading-normal); color: var(--text-body); max-width: 46ch;">Тендерный отдел поставщика или подрядчика. Спецификация приходит от заказчика, и на неё нужно быстро дать цену или технико-коммерческое предложение — с проверенными позициями и сроками.</p>
+          <div style="margin-top: 20px; display: inline-flex; align-items: center; gap: 8px; font: var(--type-label); color: var(--text-accent);">Быстрее дать цену заказчику<span data-seg-arrow="" style="display: inline-flex;"><x-import component-from-global-scope="AMTSystemsDesignSystem_374943.Icon" name="arrow-right" size="{{ 16 }}" hint-size="16px,16px"></x-import></span></div>
+        </a>
+        <a data-seg="" href="#route" style="flex: 1 1 380px; min-width: 0; display: block; text-decoration: none; color: inherit; background: var(--surface-card); border: 1px solid var(--border-hairline); border-radius: var(--radius-card); padding: 28px;">
+          <div style="font-weight: 600; font-size: 22px; line-height: 1.2; letter-spacing: var(--tracking-heading); color: var(--text-primary);">Вы рассылаете спецификацию поставщикам</div>
+          <p style="margin: 12px 0 0; font-size: 15px; line-height: var(--leading-normal); color: var(--text-body); max-width: 46ch;">Отдел закупок или снабжения. Многострочная потребность распределяется по собственной базе поставщиков: десятки RFQ, ответы в разных форматах, ручное сведение условий.</p>
+          <div style="margin-top: 20px; display: inline-flex; align-items: center; gap: 8px; font: var(--type-label); color: var(--text-accent);">Быстрее собрать рынок по своей базе<span data-seg-arrow="" style="display: inline-flex;"><x-import component-from-global-scope="AMTSystemsDesignSystem_374943.Icon" name="arrow-right" size="{{ 16 }}" hint-size="16px,16px"></x-import></span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section data-pad="" style="padding: 8px 40px 56px;">
+    <div style="max-width: var(--content-max); margin: 0 auto; display: flex; flex-wrap: wrap; gap: 32px 56px;">
+      <h2 style="flex: 0 1 300px; margin: 0; font-weight: 600; font-size: clamp(24px, 2.4vw, 32px); line-height: 1.15; letter-spacing: var(--tracking-heading); color: var(--text-primary);">Где теряется время</h2>
+      <div style="flex: 1 1 480px; min-width: 0; display: flex; flex-direction: column; border-bottom: 1px solid var(--border-hairline);">
+        <div style="padding: 18px 0; border-top: 1px solid var(--border-hairline); font-size: 16px; line-height: var(--leading-normal);"><span style="display: block; max-width: 68ch;">Спецификации на 100–2 000 позиций разбираются между 1С, Excel, почтой и личными файлами сотрудников.</span></div>
+        <div style="padding: 18px 0; border-top: 1px solid var(--border-hairline); font-size: 16px; line-height: var(--leading-normal);"><span style="display: block; max-width: 68ch;">Цены, НДС, валюты, скидки и сроки из разных КП сводятся вручную и пересводятся при каждой правке.</span></div>
+        <div style="padding: 18px 0; border-top: 1px solid var(--border-hairline); font-size: 16px; line-height: var(--leading-normal);"><span style="display: block; max-width: 68ch;">Знание о поставщиках и найденных решениях остаётся у отдельных сотрудников и уходит вместе с ними.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="route" data-pad="" style="padding: 8px 40px 56px;">
+    <div style="max-width: var(--content-max); margin: 0 auto;">
+      <h2 style="margin: 0 0 8px; font-weight: 600; font-size: clamp(24px, 2.4vw, 32px); line-height: 1.15; letter-spacing: var(--tracking-heading); color: var(--text-primary);">Как работает ИАС</h2>
+      <p style="margin: 0 0 24px; font-size: 16px; color: var(--text-secondary); max-width: 62ch;">Один аудируемый маршрут вместо разрозненных действий. Выберите шаг — справа появится состояние данных на этом шаге.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 24px;">
+        <div ref="{{ listRef }}" style="position: relative; flex: 1 1 380px; min-width: 0; background: var(--surface-card); border: var(--border-card); border-radius: var(--radius-card); overflow: hidden;">
+          <div style="display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; padding: 10px 20px; border-bottom: 1px solid var(--border-hairline); background: var(--surface-subtle);">
+            <span style="font-family: var(--font-mono); font-size: 11px; letter-spacing: .04em; text-transform: uppercase; color: var(--text-muted);">Маршрут · 5 шагов</span>
+            <span style="margin-left: auto; display: inline-flex; align-items: center; gap: 6px; font: var(--type-label); color: var(--text-accent);">Нажмите шаг<span aria-hidden="true" style="display: inline-flex;"><x-import component-from-global-scope="AMTSystemsDesignSystem_374943.Icon" name="arrow-right" size="{{ 14 }}" hint-size="14px,14px"></x-import></span><span style="color: var(--text-muted);">данные справа</span></span>
+          </div>
+          <div data-ind="" aria-hidden="true" ref="{{ indRef }}" style="position: absolute; left: 0; top: 0; width: 2px; height: 1px; background: var(--action-primary); transform: scaleY(0);"></div>
+          <button data-step="" data-press="" onClick="{{ pick0 }}" style="width: 100%; text-align: left; font: inherit; color: inherit; cursor: pointer; border: 0; border-bottom: 1px solid var(--border-hairline); background: {{ bg0 }}; padding: 16px 20px; display: flex; gap: 16px; align-items: baseline;">
+            <span style="font-family: var(--font-mono); font-size: 12px; color: var(--text-accent); font-variant-numeric: tabular-nums; flex: none;">01</span>
+            <span style="min-width: 0;"><span style="display: block; font-weight: 500; font-size: 16px; color: var(--text-primary);">Загрузить Excel или CSV</span><span style="display: block; margin-top: 4px; font: var(--type-body-sm); color: var(--text-secondary);">Структура файла заказчика может быть любой</span></span>
+            <span data-chev="" aria-hidden="true" style="margin-left: auto; flex: none; display: inline-flex; color: var(--text-muted);"><x-import component-from-global-scope="AMTSystemsDesignSystem_374943.Icon" name="chevron-right" size="{{ 16 }}" hint-size="16px,16px"></x-import></span>
+          </button>
+          <button data-step="" data-press="" onClick="{{ pick1 }}" style="width: 100%; text-align: left; font: inherit; color: inherit; cursor: pointer; border: 0; border-bottom: 1px solid var(--border-hairline); background: {{ bg1 }}; padding: 16px 20px; display: flex; gap: 16px; align-items: baseline;">
+            <span style="font-family: var(--font-mono); font-size: 12px; color: var(--text-accent); font-variant-numeric: tabular-nums; flex: none;">02</span>
+            <span style="min-width: 0;"><span style="display: block; font-weight: 500; font-size: 16px; color: var(--text-primary);">Распознать позиции и структуру</span><span style="display: block; margin-top: 4px; font: var(--type-body-sm); color: var(--text-secondary);">Количества, единицы измерения, иерархия спецификации</span></span>
+            <span data-chev="" aria-hidden="true" style="margin-left: auto; flex: none; display: inline-flex; color: var(--text-muted);"><x-import component-from-global-scope="AMTSystemsDesignSystem_374943.Icon" name="chevron-right" size="{{ 16 }}" hint-size="16px,16px"></x-import></span>
+          </button>
+          <button data-step="" data-press="" onClick="{{ pick2 }}" style="width: 100%; text-align: left; font: inherit; color: inherit; cursor: pointer; border: 0; border-bottom: 1px solid var(--border-hairline); background: {{ bg2 }}; padding: 16px 20px; display: flex; gap: 16px; align-items: baseline;">
+            <span style="font-family: var(--font-mono); font-size: 12px; color: var(--text-accent); font-variant-numeric: tabular-nums; flex: none;">03</span>
+            <span style="min-width: 0;"><span style="display: block; font-weight: 500; font-size: 16px; color: var(--text-primary);">Сопоставить с корпоративной базой</span><span style="display: block; margin-top: 4px; font: var(--type-body-sm); color: var(--text-secondary);">Артикулы, нечёткое совпадение, семантика по вашим данным</span></span>
+            <span data-chev="" aria-hidden="true" style="margin-left: auto; flex: none; display: inline-flex; color: var(--text-muted);"><x-import component-from-global-scope="AMTSystemsDesignSystem_374943.Icon" name="chevron-right" size="{{ 16 }}" hint-size="16px,16px"></x-import></span>
+          </button>
+          <button data-step="" data-press="" onClick="{{ pick3 }}" style="width: 100%; text-align: left; font: inherit; color: inherit; cursor: pointer; border: 0; border-bottom: 1px solid var(--border-hairline); background: {{ bg3 }}; padding: 16px 20px; display: flex; gap: 16px; align-items: baseline;">
+            <span style="font-family: var(--font-mono); font-size: 12px; color: var(--text-accent); font-variant-numeric: tabular-nums; flex: none;">04</span>
+            <span style="min-width: 0;"><span style="display: block; font-weight: 500; font-size: 16px; color: var(--text-primary);">Отправить RFQ и разобрать КП</span><span style="display: block; margin-top: 4px; font: var(--type-body-sm); color: var(--text-secondary);">Отправка от имени сотрудника, статусы, вложения, просрочки</span></span>
+            <span data-chev="" aria-hidden="true" style="margin-left: auto; flex: none; display: inline-flex; color: var(--text-muted);"><x-import component-from-global-scope="AMTSystemsDesignSystem_374943.Icon" name="chevron-right" size="{{ 16 }}" hint-size="16px,16px"></x-import></span>
+          </button>
+          <button data-step="" data-press="" onClick="{{ pick4 }}" style="width: 100%; text-align: left; font: inherit; color: inherit; cursor: pointer; border: 0; background: {{ bg4 }}; padding: 16px 20px; display: flex; gap: 16px; align-items: baseline;">
+            <span style="font-family: var(--font-mono); font-size: 12px; color: var(--text-accent); font-variant-numeric: tabular-nums; flex: none;">05</span>
+            <span style="min-width: 0;"><span style="display: block; font-weight: 500; font-size: 16px; color: var(--text-primary);">Сравнить условия и выгрузить Excel</span><span style="display: block; margin-top: 4px; font: var(--type-body-sm); color: var(--text-secondary);">Цена, НДС, валюта, скидка и срок в сравнимой матрице</span></span>
+            <span data-chev="" aria-hidden="true" style="margin-left: auto; flex: none; display: inline-flex; color: var(--text-muted);"><x-import component-from-global-scope="AMTSystemsDesignSystem_374943.Icon" name="chevron-right" size="{{ 16 }}" hint-size="16px,16px"></x-import></span>
+          </button>
+        </div>
+        <div style="flex: 1 1 460px; min-width: 0;">
+          <div style="background: var(--surface-card); border: var(--border-card); border-radius: var(--radius-card); overflow: hidden;">
+            <div style="display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--border-hairline);">
+              <span style="font: var(--type-h4); color: var(--text-primary);">{{ stepTitle }}</span>
+              <span style="margin-left: auto; font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); font-variant-numeric: tabular-nums;">{{ stepIndex }}</span>
+            </div>
+            <div data-tbl="">
+              <x-import component-from-global-scope="AMTSystemsDesignSystem_374943.DataTable" columns="{{ stepCols }}" rows="{{ stepRows }}" density="{{ density }}" zebra="{{ false }}" sticky-header="{{ false }}" hint-size="100%,220px"></x-import>
+            </div>
+          </div>
+          <p style="margin: 12px 0 0; font: var(--type-body-sm); color: var(--text-secondary); max-width: 62ch;">{{ stepNote }}</p>
+          <figure style="margin: 24px 0 0;">
+            <div style="border: 1px solid var(--border-hairline); border-radius: var(--radius-card); overflow: hidden; line-height: 0;">
+              <img src="img/import-crop.png" alt="Экран импорта: разобрано 19 строк из 19, маппинг колонок и предпросмотр распознанных позиций" style="display: block; width: 100%; height: auto;">
+            </div>
+            <figcaption style="margin-top: 10px; font: var(--type-caption); color: var(--text-muted); max-width: 66ch;">Шаг 02 в системе: разбор файла, маппинг колонок и предпросмотр строк перед подтверждением. Колонки можно поправить руками, если структура нестандартная.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="limits" data-pad="" style="padding: 8px 40px 56px;">
+    <div style="max-width: var(--content-max); margin: 0 auto; display: flex; flex-wrap: wrap; gap: 16px;">
+      <div style="flex: 1 1 420px; min-width: 0; background: var(--surface-card); border: var(--border-card); border-radius: var(--radius-card); padding: 28px;">
+        <h2 style="margin: 0 0 4px; font-weight: 600; font-size: 22px; line-height: 1.2; letter-spacing: var(--tracking-heading); color: var(--text-primary);">Честные границы</h2>
+        <p style="margin: 0 0 20px; font: var(--type-body-sm); color: var(--text-secondary); max-width: 52ch;">Мы говорим об этом до сделки, а не после.</p>
+        <div style="display: flex; flex-direction: column;">
+          <div style="font-size: 15px; line-height: var(--leading-normal); padding: 12px 0; border-top: 1px solid var(--border-hairline);">Не ищет новых поставщиков во внешнем интернете — работает по вашей базе.</div>
+          <div style="font-size: 15px; line-height: var(--leading-normal); padding: 12px 0; border-top: 1px solid var(--border-hairline);">Не заменяет 1С, CRM и ЭТП и не обосновывает НМЦК.</div>
+          <div style="font-size: 15px; line-height: var(--leading-normal); padding: 12px 0; border-top: 1px solid var(--border-hairline);">Ядро внедряется сейчас, расширенные модули: по согласованному scope.</div>
+          <div style="font-size: 15px; line-height: var(--leading-normal); padding: 12px 0; border-top: 1px solid var(--border-hairline);"><span style="color: var(--text-attention); font-weight: 500;">Внедрение не нужно</span>, если у вас два поставщика и спецификация на 20 строк: Excel справляется.</div>
+        </div>
+        <p style="margin: 20px 0 0; font: var(--type-caption); color: var(--text-muted); max-width: 56ch;">≥3× и ≥70%: цели, подтверждаемые пилотом на ваших документах, а не гарантия результата.</p>
+      </div>
+      <div style="flex: 1 1 420px; min-width: 0; background: var(--surface-header); color: var(--text-inverse); border-radius: var(--radius-card); padding: 28px;">
+        <h2 style="margin: 0 0 4px; font-weight: 600; font-size: 22px; line-height: 1.2; letter-spacing: var(--tracking-heading); color: var(--text-inverse);">Корпоративный контур on-premise</h2>
+        <p style="margin: 0 0 20px; font-size: 15px; color: var(--text-on-dark-secondary); max-width: 52ch;">Спецификации, цены и переписка с поставщиками — коммерческая тайна. Система живёт внутри вашего периметра.</p>
+        <div style="display: flex; flex-direction: column; border-bottom: 1px solid var(--border-on-dark);">
+          <div style="padding: 13px 0; border-top: 1px solid var(--border-on-dark); font-size: 15px; line-height: var(--leading-normal);">Данные не покидают периметр заказчика.</div>
+          <div style="padding: 13px 0; border-top: 1px solid var(--border-on-dark); font-size: 15px; line-height: var(--leading-normal);">Доменные учётные записи, аудит отправок и история действий.</div>
+          <div style="padding: 13px 0; border-top: 1px solid var(--border-on-dark); font-size: 15px; line-height: var(--leading-normal);">Офлайн-поставка обновлений для изолированных контуров.</div>
+        </div>
+        <p style="margin: 20px 0 0; font: var(--type-caption); color: var(--text-on-dark-muted); max-width: 56ch;">Источники знания: выгрузки из 1С, справочники, прошлые КП, ручные привязки и корпоративная почта.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="case" data-pad="" style="padding: 8px 40px 56px;">
+    <div style="max-width: var(--content-max); margin: 0 auto; display: flex; flex-wrap: wrap; background: var(--surface-card); border: var(--border-card); border-radius: var(--radius-card); overflow: hidden;">
+      <div style="flex: 2 1 440px; min-width: 0; padding: 28px;">
+        <h2 style="margin: 0; font-weight: 600; font-size: clamp(22px, 2.2vw, 28px); line-height: 1.2; letter-spacing: var(--tracking-heading); color: var(--text-primary); max-width: 26ch;">Закупочные знания из выгрузок 1С в маршрут расчёта</h2>
+        <div style="margin-top: 10px; font: var(--type-body-sm); color: var(--text-muted);">Газовое машиностроение · промышленная эксплуатация с апреля 2026</div>
+        <p style="margin: 14px 0 0; font-size: 16px; line-height: var(--leading-normal); color: var(--text-body); max-width: 58ch;">Работают RFQ с предпросмотром, отправка от имени сотрудника, база КП, откат импорта, контроль просроченных КП и доменный вход.</p>
+        <div style="margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--border-hairline); font: var(--type-body-sm); color: var(--text-secondary);">Загрузка выгрузок 1С · RFQ по корпоративной почте · доменный вход</div>
+        <figure style="margin: 24px 0 0;">
+          <div style="border: 1px solid var(--border-hairline); border-radius: var(--radius-card); overflow: hidden; line-height: 0;">
+            <img src="img/registry-crop.png" alt="База КП: поставщик, дата и срок действия, валюта, признак НДС и число позиций" style="display: block; width: 100%; height: auto;">
+          </div>
+          <figcaption style="margin-top: 10px; font: var(--type-caption); color: var(--text-muted); max-width: 72ch;">База КП: срок действия с пометкой просроченных, валюта и признак НДС — «как в файле» или пересчитано. Просроченные предложения не участвуют в выборе минимальной цены.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="stack" data-pad="" style="padding: 8px 40px 56px;">
+    <div style="max-width: var(--content-max); margin: 0 auto;">
+      <h2 style="margin: 0 0 8px; font-weight: 600; font-size: clamp(24px, 2.4vw, 32px); line-height: 1.15; letter-spacing: var(--tracking-heading); color: var(--text-primary);">Что подключается на вашей стороне</h2>
+      <p style="margin: 0 0 24px; font-size: 16px; color: var(--text-secondary); max-width: 62ch;">Система не заменяет учётный контур, а читает его и возвращает результат туда, где закупки уже работают.</p>
+      <div style="display: flex; flex-direction: column; gap: 1px; background: var(--border-hairline); border: var(--border-card); border-radius: var(--radius-card); overflow: hidden;">
+        <div style="background: var(--surface-card); display: flex; flex-wrap: wrap; gap: 8px 32px; align-items: baseline; padding: 20px 24px;">
+          <div style="flex: 0 0 210px; min-width: 0; font-weight: 600; font-size: 17px; letter-spacing: var(--tracking-heading); color: var(--text-primary);">Данные из 1С</div>
+          <div style="flex: 1 1 340px; min-width: 0; font-size: 16px; line-height: var(--leading-normal); max-width: 66ch;">Справочники, номенклатура и записи прошлых поставок загружаются выгрузкой в Excel или CSV. Прямого коннектора к 1С пока нет: он обсуждается в scope внедрения.</div>
+        </div>
+        <div style="background: var(--surface-card); display: flex; flex-wrap: wrap; gap: 8px 32px; align-items: baseline; padding: 20px 24px;">
+          <div style="flex: 0 0 210px; min-width: 0; font-weight: 600; font-size: 17px; letter-spacing: var(--tracking-heading); color: var(--text-primary);">Excel и CSV</div>
+          <div style="flex: 1 1 340px; min-width: 0; font-size: 16px; line-height: var(--leading-normal); max-width: 66ch;">Вход: файл заказчика в любой структуре. Выход: та же таблица, в которой работают закупки.</div>
+        </div>
+        <div style="background: var(--surface-card); display: flex; flex-wrap: wrap; gap: 8px 32px; align-items: baseline; padding: 20px 24px;">
+          <div style="flex: 0 0 210px; min-width: 0; font-weight: 600; font-size: 17px; letter-spacing: var(--tracking-heading); color: var(--text-primary);">Корпоративная почта</div>
+          <div style="flex: 1 1 340px; min-width: 0; font-size: 16px; line-height: var(--leading-normal); max-width: 66ch;">Запросы КП уходят с вашего домена от имени сотрудника, ответы разбираются в реестр.</div>
+        </div>
+        <div style="background: var(--surface-card); display: flex; flex-wrap: wrap; gap: 8px 32px; align-items: baseline; padding: 20px 24px;">
+          <div style="flex: 0 0 210px; min-width: 0; font-weight: 600; font-size: 17px; letter-spacing: var(--tracking-heading); color: var(--text-primary);">Доменный вход</div>
+          <div style="flex: 1 1 340px; min-width: 0; font-size: 16px; line-height: var(--leading-normal); max-width: 66ch;">Вход по доменной учётной записи, аудит отправок и история действий сотрудников.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="delivery" data-pad="" style="padding: 8px 40px 56px;">
+    <div style="max-width: var(--content-max); margin: 0 auto;">
+      <h2 style="margin: 0 0 24px; font-weight: 600; font-size: clamp(24px, 2.4vw, 32px); line-height: 1.15; letter-spacing: var(--tracking-heading); color: var(--text-primary);">Как мы поставляем систему</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); border-top: 1px solid var(--border-hairline);">
+        <div style="padding: 20px 28px 0 0; border-right: 1px solid var(--border-hairline);">
+          <div style="font-family: var(--font-mono); font-size: 12px; color: var(--text-accent); font-variant-numeric: tabular-nums;">01</div>
+          <div style="margin-top: 10px; font-weight: 600; font-size: 17px; letter-spacing: var(--tracking-heading); color: var(--text-primary);">Разбор спецификации</div>
+          <div style="margin-top: 8px; font-size: 15px; line-height: var(--leading-normal); color: var(--text-body);">30–45 минут и одна обезличенная спецификация. На выходе: карта процесса, список данных и интеграций, границы scope и критерии пилота.</div>
+        </div>
+        <div style="padding: 20px 28px; border-right: 1px solid var(--border-hairline);">
+          <div style="font-family: var(--font-mono); font-size: 12px; color: var(--text-accent); font-variant-numeric: tabular-nums;">02</div>
+          <div style="margin-top: 10px; font-weight: 600; font-size: 17px; letter-spacing: var(--tracking-heading); color: var(--text-primary);">Платный пилот</div>
+          <div style="margin-top: 8px; font-size: 15px; line-height: var(--leading-normal); color: var(--text-body);">Измеримый результат на ваших документах и вашем процессе, а не на демо-данных.</div>
+        </div>
+        <div style="padding: 20px 28px; border-right: 1px solid var(--border-hairline);">
+          <div style="font-family: var(--font-mono); font-size: 12px; color: var(--text-accent); font-variant-numeric: tabular-nums;">03</div>
+          <div style="margin-top: 10px; font-weight: 600; font-size: 17px; letter-spacing: var(--tracking-heading); color: var(--text-primary);">Внедрение</div>
+          <div style="margin-top: 8px; font-size: 15px; line-height: var(--leading-normal); color: var(--text-body);">Справочники, шаблоны, роли, загрузка выгрузок из 1С, интеграция с корпоративной почтой, инфраструктурные правила заказчика.</div>
+        </div>
+        <div style="padding: 20px 0 0 28px;">
+          <div style="font-family: var(--font-mono); font-size: 12px; color: var(--text-accent); font-variant-numeric: tabular-nums;">04</div>
+          <div style="margin-top: 10px; font-weight: 600; font-size: 17px; letter-spacing: var(--tracking-heading); color: var(--text-primary);">Годовая подписка</div>
+          <div style="margin-top: 8px; font-size: 15px; line-height: var(--leading-normal); color: var(--text-body);">Лицензия, поддержка, совместимость и общепродуктовые обновления. Уникальные интеграции оцениваются отдельно.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" data-pad="" style="padding: 8px 40px 56px;">
+    <div style="max-width: var(--content-max); margin: 0 auto; display: flex; flex-wrap: wrap; gap: 32px 56px;">
+      <h2 style="flex: 0 1 300px; margin: 0; font-weight: 600; font-size: clamp(24px, 2.4vw, 32px); line-height: 1.15; letter-spacing: var(--tracking-heading); color: var(--text-primary);">Что спрашивают до встречи</h2>
+      <div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; border-bottom: 1px solid var(--border-hairline);">
+        <div style="border-top: 1px solid var(--border-hairline);">
+          <button data-q="" data-press="" onClick="{{ q0 }}" aria-expanded="{{ e0 }}" style="width: 100%; display: flex; gap: 16px; align-items: baseline; text-align: left; font: inherit; color: inherit; cursor: pointer; border: 0; background: transparent; padding: 18px 4px;">
+            <span style="flex: 1 1 auto; min-width: 0; font-weight: 500; font-size: 16px; color: var(--text-primary);">Данные действительно не уходят из нашего периметра?</span>
+            <span data-qmark="" aria-hidden="true" style="flex: none; display: inline-flex; color: var(--text-muted);"><x-import component-from-global-scope="AMTSystemsDesignSystem_374943.Icon" name="{{ n0 }}" size="{{ 16 }}" hint-size="16px,16px"></x-import></span>
+          </button>
+          <sc-if value="{{ f0 }}" hint-placeholder-val="{{ false }}">
+            <p style="margin: 0; padding: 0 4px 20px; font-size: 15px; line-height: var(--leading-normal); color: var(--text-body); max-width: 68ch;">Да. Поставка on-premise: система разворачивается в вашей инфраструктуре, спецификации, цены и переписка с поставщиками остаются внутри контура. Для изолированных контуров обновления поставляются офлайн.</p>
+          </sc-if>
+        </div>
+        <div style="border-top: 1px solid var(--border-hairline);">
+          <button data-q="" data-press="" onClick="{{ q1 }}" aria-expanded="{{ e1 }}" style="width: 100%; display: flex; gap: 16px; align-items: baseline; text-align: left; font: inherit; color: inherit; cursor: pointer; border: 0; background: transparent; padding: 18px 4px;">
+            <span style="flex: 1 1 auto; min-width: 0; font-weight: 500; font-size: 16px; color: var(--text-primary);">Нужно ли менять 1С, CRM или процесс закупок?</span>
+            <span data-qmark="" aria-hidden="true" style="flex: none; display: inline-flex; color: var(--text-muted);"><x-import component-from-global-scope="AMTSystemsDesignSystem_374943.Icon" name="{{ n1 }}" size="{{ 16 }}" hint-size="16px,16px"></x-import></span>
+          </button>
+          <sc-if value="{{ f1 }}" hint-placeholder-val="{{ false }}">
+            <p style="margin: 0; padding: 0 4px 20px; font-size: 15px; line-height: var(--leading-normal); color: var(--text-body); max-width: 68ch;">Нет. Система не заменяет 1С, CRM и ЭТП: она читает справочники и прошлые поставки, ведёт запросы КП и возвращает сравнение в Excel. Учётный контур остаётся на месте.</p>
+          </sc-if>
+        </div>
+        <div style="border-top: 1px solid var(--border-hairline);">
+          <button data-q="" data-press="" onClick="{{ q2 }}" aria-expanded="{{ e2 }}" style="width: 100%; display: flex; gap: 16px; align-items: baseline; text-align: left; font: inherit; color: inherit; cursor: pointer; border: 0; background: transparent; padding: 18px 4px;">
+            <span style="flex: 1 1 auto; min-width: 0; font-weight: 500; font-size: 16px; color: var(--text-primary);">Найдёт ли система новых поставщиков?</span>
+            <span data-qmark="" aria-hidden="true" style="flex: none; display: inline-flex; color: var(--text-muted);"><x-import component-from-global-scope="AMTSystemsDesignSystem_374943.Icon" name="{{ n2 }}" size="{{ 16 }}" hint-size="16px,16px"></x-import></span>
+          </button>
+          <sc-if value="{{ f2 }}" hint-placeholder-val="{{ false }}">
+            <p style="margin: 0; padding: 0 4px 20px; font-size: 15px; line-height: var(--leading-normal); color: var(--text-body); max-width: 68ch;">Нет. Внешнего поиска по интернету в системе нет — работа идёт по вашей базе поставщиков и вашей истории закупок.</p>
+          </sc-if>
+        </div>
+        <div style="border-top: 1px solid var(--border-hairline);">
+          <button data-q="" data-press="" onClick="{{ q3 }}" aria-expanded="{{ e3 }}" style="width: 100%; display: flex; gap: 16px; align-items: baseline; text-align: left; font: inherit; color: inherit; cursor: pointer; border: 0; background: transparent; padding: 18px 4px;">
+            <span style="flex: 1 1 auto; min-width: 0; font-weight: 500; font-size: 16px; color: var(--text-primary);">Что нужно принести на разбор?</span>
+            <span data-qmark="" aria-hidden="true" style="flex: none; display: inline-flex; color: var(--text-muted);"><x-import component-from-global-scope="AMTSystemsDesignSystem_374943.Icon" name="{{ n3 }}" size="{{ 16 }}" hint-size="16px,16px"></x-import></span>
+          </button>
+          <sc-if value="{{ f3 }}" hint-placeholder-val="{{ false }}">
+            <p style="margin: 0; padding: 0 4px 20px; font-size: 15px; line-height: var(--leading-normal); color: var(--text-body); max-width: 68ch;">Одну обезличенную спецификацию — такую, какие приходят вам в работу. 30–45 минут разговора хватает, чтобы описать процесс, данные и интеграции.</p>
+          </sc-if>
+        </div>
+        <div style="border-top: 1px solid var(--border-hairline);">
+          <button data-q="" data-press="" onClick="{{ q4 }}" aria-expanded="{{ e4 }}" style="width: 100%; display: flex; gap: 16px; align-items: baseline; text-align: left; font: inherit; color: inherit; cursor: pointer; border: 0; background: transparent; padding: 18px 4px;">
+            <span style="flex: 1 1 auto; min-width: 0; font-weight: 500; font-size: 16px; color: var(--text-primary);">Когда система нам не нужна?</span>
+            <span data-qmark="" aria-hidden="true" style="flex: none; display: inline-flex; color: var(--text-muted);"><x-import component-from-global-scope="AMTSystemsDesignSystem_374943.Icon" name="{{ n4 }}" size="{{ 16 }}" hint-size="16px,16px"></x-import></span>
+          </button>
+          <sc-if value="{{ f4 }}" hint-placeholder-val="{{ false }}">
+            <p style="margin: 0; padding: 0 4px 20px; font-size: 15px; line-height: var(--leading-normal); color: var(--text-body); max-width: 68ch;">При двух поставщиках и спецификации на 20 строк Excel справляется — внедрение не нужно. Мы говорим об этом на разборе, а не после подписания.</p>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cta" data-pad="" style="padding: 8px 40px 56px;">
+    <div style="max-width: var(--content-max); margin: 0 auto; display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch;">
+      <div style="flex: 1 1 420px; min-width: 0; background: var(--surface-accent); color: var(--text-inverse); border-radius: var(--radius-card); padding: 40px 36px; display: flex; flex-direction: column;">
+        <div style="font-weight: 600; font-size: clamp(26px, 2.6vw, 36px); line-height: 1.1; letter-spacing: var(--tracking-display); max-width: 24ch; text-wrap: balance;">Начнём с одной обезличенной спецификации</div>
+        <p style="margin: 18px 0 0; font-size: 16px; line-height: var(--leading-normal); max-width: 50ch; color: var(--steel-50);">На выходе: карта вашего процесса, список данных и интеграций, границы scope и измеримые критерии пилота. Без обещаний до проверки на ваших данных.</p>
+        <div style="margin-top: auto; padding-top: 32px; font-size: 14px; color: var(--steel-50); max-width: 46ch;">Спецификацию присылайте обезличенной: без наименований контрагентов и персональных данных сотрудников.</div>
+      </div>
+      <div style="flex: 1 1 420px; min-width: 0; background: var(--surface-card); border: var(--border-card); border-radius: var(--radius-card); padding: 32px 36px;">
+        <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+          <div style="display: flex; flex-direction: column; gap: 18px;">
+            <div>
+              <div style="font-weight: 600; font-size: 20px; letter-spacing: var(--tracking-heading); color: var(--text-primary);">Разбор спецификации, 30–45 минут</div>
+              <p style="margin: 6px 0 0; font: var(--type-body-sm); color: var(--text-secondary); max-width: 46ch;">Ответим в рабочий день и предложим два слота. Спецификацию можно прислать позже.</p>
+            </div>
+            <x-import component-from-global-scope="AMTSystemsDesignSystem_374943.Field" label="Имя и фамилия" required="{{ true }}" hint-size="100%,64px">
+              <x-import component-from-global-scope="AMTSystemsDesignSystem_374943.Input" placeholder="Как к вам обращаться" value="{{ fName }}" onChange="{{ setName }}" hint-size="100%,32px"></x-import>
+            </x-import>
+            <x-import component-from-global-scope="AMTSystemsDesignSystem_374943.Field" label="Компания" required="{{ true }}" hint-size="100%,64px">
+              <x-import component-from-global-scope="AMTSystemsDesignSystem_374943.Input" placeholder="Название организации" value="{{ fCompany }}" onChange="{{ setCompany }}" hint-size="100%,32px"></x-import>
+            </x-import>
+            <x-import component-from-global-scope="AMTSystemsDesignSystem_374943.Field" label="Рабочая почта" required="{{ true }}" hint="На неё придут слоты и список вопросов к встрече." hint-size="100%,80px">
+              <x-import component-from-global-scope="AMTSystemsDesignSystem_374943.Input" type="email" placeholder="name@company.ru" icon-left="mail" value="{{ fMail }}" onChange="{{ setMail }}" hint-size="100%,32px"></x-import>
+            </x-import>
+            <x-import component-from-global-scope="AMTSystemsDesignSystem_374943.Field" label="Типичная спецификация" hint-size="100%,64px">
+              <x-import component-from-global-scope="AMTSystemsDesignSystem_374943.Select" options="{{ scaleOptions }}" placeholder="Сколько позиций в работе" value="{{ fScale }}" onChange="{{ setScale }}" hint-size="100%,32px"></x-import>
+            </x-import>
+            <div style="display: flex; gap: 10px; align-items: flex-start; padding-top: 2px;">
+              <div style="flex: none; padding-top: 1px;">
+                <x-import component-from-global-scope="AMTSystemsDesignSystem_374943.Checkbox" checked="{{ consent }}" onChange="{{ toggleConsent }}" hint-size="16px,16px"></x-import>
+              </div>
+              <div style="font: var(--type-caption); line-height: var(--leading-normal); color: var(--text-secondary); max-width: 52ch;">Я даю согласие на обработку персональных данных, указанных в форме, в соответствии с <a href="/политика-конфиденциальности" style="color: var(--text-accent);">Политикой обработки персональных данных</a>, и принимаю <a href="/соглашение" style="color: var(--text-accent);">Пользовательское соглашение</a>. Согласие можно отозвать письмом на privacy@amt-systems.ru.</div>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
+              <x-import component-from-global-scope="AMTSystemsDesignSystem_374943.Button" variant="primary" size="lg" icon-right="arrow-right" disabled="{{ ctaDisabled }}" onClick="{{ submit }}" hint-size="auto,40px">{{ submitLabel }}</x-import>
+              <span style="font: var(--type-caption); color: var(--text-muted); max-width: 30ch;">{{ formHint }}</span>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+          <div style="display: flex; flex-direction: column; gap: 14px; align-items: flex-start;">
+            <x-import component-from-global-scope="AMTSystemsDesignSystem_374943.Icon" name="check" size="{{ 20 }}" color="var(--text-success)" hint-size="20px,20px"></x-import>
+            <div style="font-weight: 600; font-size: 20px; letter-spacing: var(--tracking-heading); color: var(--text-primary);">Заявка отправлена</div>
+            <p style="margin: 0; font-size: 15px; line-height: var(--leading-normal); color: var(--text-body); max-width: 46ch;">{{ sentNote }}</p>
+            <p style="margin: 0; font: var(--type-caption); color: var(--text-muted); max-width: 48ch;">Пока ждёте — можно прислать обезличенную спецификацию на ту же почту, с которой придёт письмо.</p>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+
+  <footer data-pad="" style="padding: 32px 40px 48px; border-top: 1px solid var(--border-hairline);">
+    <div style="max-width: var(--content-max); margin: 0 auto; display: flex; flex-wrap: wrap; gap: 24px 56px; justify-content: space-between; align-items: flex-end;">
+      <div>
+        <div style="color: var(--text-primary); letter-spacing: -0.03em; font-size: 17px;"><span style="font-weight: 700;">AMT</span> <span style="font-weight: 400; letter-spacing: -0.01em;">Systems</span></div>
+        <div style="margin-top: 8px; font: var(--type-body-sm); color: var(--text-muted); max-width: 46ch;">Автоматизация сложных корпоративных процессов. ИАС «Закупки», on-premise.</div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px 24px; font: var(--type-label);">
+        <a href="#route" style="color: var(--text-secondary); text-decoration: none;">Продукт</a>
+        <a href="#limits" style="color: var(--text-secondary); text-decoration: none;">Границы и scope</a>
+        <a href="#stack" style="color: var(--text-secondary); text-decoration: none;">Интеграции</a>
+        <a href="#faq" style="color: var(--text-secondary); text-decoration: none;">Вопросы</a>
+        <a href="#delivery" style="color: var(--text-secondary); text-decoration: none;">Внедрение</a>
+        <a href="#case" style="color: var(--text-secondary); text-decoration: none;">Внедрения</a>
+        <a href="/блог" style="color: var(--text-secondary); text-decoration: none;">Блог</a>
+        <a href="/контакты" style="color: var(--text-secondary); text-decoration: none;">Контакты</a>
+        <a href="/соглашение" style="color: var(--text-secondary); text-decoration: none;">Пользовательское соглашение</a>
+        <a href="/политика-конфиденциальности" style="color: var(--text-secondary); text-decoration: none;">Политика обработки персональных данных</a>
+        <a href="/согласие-на-обработку" style="color: var(--text-secondary); text-decoration: none;">Согласие на обработку ПДн</a>
+        <a href="/cookies" style="color: var(--text-secondary); text-decoration: none;">Использование cookie</a>
+      </div>
+    </div>
+    <div style="max-width: var(--content-max); margin: 28px auto 0; padding-top: 20px; border-top: 1px solid var(--border-hairline); display: flex; flex-wrap: wrap; gap: 20px 56px;">
+      <div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 6px; font: var(--type-caption); color: var(--text-muted); font-variant-numeric: tabular-nums;">
+        <div style="color: var(--text-secondary);">ООО «АМТ Системс»</div>
+        <div>ИНН 0000000000 · КПП 000000000 · ОГРН 0000000000000</div>
+        <div>000000, г. Москва, ул. Наименование, д. 0, стр. 0, помещение 000</div>
+      </div>
+      <div style="flex: 1 1 260px; min-width: 0; display: flex; flex-direction: column; gap: 6px; font: var(--type-caption); color: var(--text-muted);">
+        <div><a href="mailto:info@amt-systems.ru" style="color: var(--text-secondary);">info@amt-systems.ru</a> · <a href="tel:+70000000000" style="color: var(--text-secondary);">+7 000 000-00-00</a></div>
+        <div>Вопросы по персональным данным: <a href="mailto:privacy@amt-systems.ru" style="color: var(--text-secondary);">privacy@amt-systems.ru</a></div>
+        <div>Режим работы: пн–пт, 09:00–18:00 (МСК)</div>
+      </div>
+      <div style="flex: 1 1 320px; min-width: 0; font: var(--type-caption); line-height: var(--leading-normal); color: var(--text-muted); max-width: 62ch;">Оператор персональных данных по 152-ФЗ. Данные обрабатываются и хранятся на серверах на территории Российской Федерации (242-ФЗ). Сведения на сайте не являются публичной офертой. © 2026 AMT Systems.</div>
+    </div>
+  </footer>
+
+  <sc-if value="{{ cookieOpen }}" hint-placeholder-val="{{ false }}">
+    <div data-cookiebar="" role="region" aria-label="Уведомление об использовании cookie" style="position: fixed; left: 16px; right: 16px; bottom: var(--cookiebar-bottom, 16px); z-index: 60; display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; max-width: var(--content-max); margin: 0 auto; padding: 14px 18px; background: var(--surface-card); border: 1px solid var(--border-default); border-radius: var(--radius-card); box-shadow: var(--shadow-md);">
+      <div style="flex: 1 1 420px; min-width: 0; font: var(--type-caption); line-height: var(--leading-normal); color: var(--text-body); max-width: 76ch;">Сайт использует cookie и метрику посещений. Продолжая работу, вы соглашаетесь с <a href="/cookies" style="color: var(--text-accent);">условиями использования cookie</a> и <a href="/политика-конфиденциальности" style="color: var(--text-accent);">Политикой обработки персональных данных</a>.</div>
+      <x-import component-from-global-scope="AMTSystemsDesignSystem_374943.Button" variant="primary" size="sm" onClick="{{ ackCookies }}" hint-size="auto,32px">Согласен</x-import>
+    </div>
+  </sc-if>
+
+  <a data-mobilecta="" data-press="" href="#cta" style="position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; min-height: 52px; align-items: center; padding: 0 20px; background: var(--action-primary); color: var(--action-primary-text); text-decoration: none; font-weight: 500; font-size: 15px;">Записаться на разбор</a>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440},&quot;visual&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;плоский&quot;,&quot;объёмный&quot;,&quot;3D&quot;],&quot;default&quot;:&quot;3D&quot;,&quot;tsType&quot;:&quot;'плоский' | 'объёмный' | '3D'&quot;,&quot;section&quot;:&quot;Вид&quot;},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;dark&quot;,&quot;tsType&quot;:&quot;'light' | 'dark'&quot;,&quot;section&quot;:&quot;Вид&quot;},&quot;progress&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;off&quot;,&quot;line&quot;,&quot;line+percent&quot;],&quot;default&quot;:&quot;off&quot;,&quot;tsType&quot;:&quot;'off' | 'line' | 'line+percent'&quot;,&quot;section&quot;:&quot;Вид&quot;},&quot;tableDensity&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;compact&quot;,&quot;default&quot;,&quot;comfortable&quot;],&quot;default&quot;:&quot;comfortable&quot;,&quot;tsType&quot;:&quot;'compact' | 'default' | 'comfortable'&quot;,&quot;section&quot;:&quot;Данные&quot;}}">
+const NB = '\u00A0';
+const money = (n) => n.toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).replace(/\s/g, NB);
+const qty = (n) => n.toLocaleString('ru-RU').replace(/\s/g, NB);
+
+// Спецификация 2026-118 «КИПиА» — та же, что на снимках системы. Данные демонстрационные.
+const HERO = [
+  { id: 1, name: 'Датчик давления Метран-150CG, 0…1,6 МПа', q: 6, u: 'шт', sum: 46900, sup: 'Метран-Дистрибуция', d: -4.5, st: 'received' },
+  { id: 2, name: 'Термопреобразователь ТСМУ-205, L=120 мм', q: 8, u: 'шт', sum: 7180, sup: 'КИП-Комплект', d: -2.3, st: 'received' },
+  { id: 3, name: 'Преобразователь давления Rosemount 3051CD', q: 2, u: 'шт', sum: 179400, sup: 'Метран-Дистрибуция', d: 2.5, st: 'received' },
+  { id: 4, name: 'Манометр показывающий МП3-У, 0…1,0 МПа', q: 12, u: 'шт', sum: 1145, sup: 'ТеплоПрибор-Снаб', d: -5.4, st: 'received' },
+  { id: 5, name: 'Датчик-реле температуры ТАМ-102-2', q: 4, u: 'шт', sum: null, sup: null, d: null, st: 'waiting' },
+  { id: 6, name: 'Кран шаровой стальной фланцевый DN50 PN40', q: 10, u: 'шт', sum: 13950, sup: 'Спецарматура-Волга', d: -1.1, st: 'received' },
+  { id: 7, name: 'Задвижка клиновая 30с41нж DN100 PN16', q: 5, u: 'шт', sum: 23100, sup: 'Спецарматура-Волга', d: -5.1, st: 'received' }
+];
+
+const STEPS = [
+  {
+    title: 'Файл заказчика, как он пришёл',
+    note: 'Заголовки, единицы измерения и примечания в файле заказчика не нормализованы. Импорт принимает файл как есть и полностью откатывается, если что-то пошло не так.',
+    cols: [
+      { key: 'a', header: 'A · Наименование', width: '46%' },
+      { key: 'b', header: 'B · Кол-во', width: '18%' },
+      { key: 'c', header: 'C · Ед', width: '14%' },
+      { key: 'd', header: 'D · Прим.', width: '22%', muted: true }
+    ],
+    rows: HERO.slice(0, 5).map((r, i) => ({
+      id: r.id,
+      a: r.name,
+      b: [ '6шт', '8', '2 шт.', '12', '4' ][i],
+      c: [ '', 'шт', '', 'шт', 'шт' ][i],
+      d: [ '', 'аналог допустим', '', 'по ТУ', '' ][i]
+    }))
+  },
+  {
+    title: 'Позиции распознаны',
+    note: 'Количество, единица измерения и место позиции в иерархии спецификации выделены отдельными полями. Всё, что распознано неуверенно, помечается и остаётся видимым.',
+    cols: [
+      { key: 'name', header: 'Позиция', width: '52%' },
+      { key: 'q', header: 'Кол-во', width: '16%', numeric: true, align: 'right' },
+      { key: 'u', header: 'Ед', width: '12%' },
+      { key: 'conf', header: 'Уверенность', width: '20%', numeric: true, align: 'right' }
+    ],
+    rows: HERO.slice(0, 5).map((r, i) => ({ id: r.id, name: r.name, q: qty(r.q), u: r.u, conf: [ '0,98', '0,94', '0,91', '0,97', '0,72' ][i] }))
+  },
+  {
+    title: 'Сопоставление с базой',
+    note: 'Позиции, для которых соответствие не найдено, показываются явно и не скрываются. Решение по ним остаётся за специалистом, а ручная привязка попадает в базу знаний.',
+    cols: [
+      { key: 'name', header: 'Позиция', width: '44%' },
+      { key: 'sku', header: 'Артикул в базе', width: '22%' },
+      { key: 'match', header: 'Совпадение', width: '16%', numeric: true, align: 'right' },
+      { key: 'src', header: 'Источник', width: '18%', muted: true }
+    ],
+    rows: [
+      { id: 1, name: HERO[0].name, sku: '150CG-1.6-M20', match: 'артикул', src: 'выгрузка 1С' },
+      { id: 2, name: HERO[1].name, sku: '205-120-PT100', match: 'артикул', src: 'выгрузка 1С' },
+      { id: 3, name: HERO[2].name, sku: '3051CD2A22A1AS5', match: '0,88', src: 'прошлые КП' },
+      { id: 5, name: HERO[4].name, sku: '— не найдено', match: '—', src: 'нужна привязка', flag: true }
+    ]
+  },
+  {
+    title: 'Запросы КП отправлены',
+    note: 'Запрос уходит с корпоративного адреса от имени сотрудника, с предпросмотром письма. Статусы, вложения и просроченные ответы видны в одном реестре.',
+    cols: [
+      { key: 'sup', header: 'Поставщик', width: '32%' },
+      { key: 'items', header: 'Позиций', width: '16%', numeric: true, align: 'right' },
+      { key: 'sent', header: 'Отправлено', width: '22%', numeric: true, align: 'right' },
+      { key: 'st', header: 'Статус', width: '30%' }
+    ],
+    rows: [
+      { id: 'a', sup: 'ТеплоПрибор-Снаб', items: '15', sent: '18.08.2026', st: 'received' },
+      { id: 'b', sup: 'КИП-Комплект', items: '15', sent: '18.08.2026', st: 'received' },
+      { id: 'c', sup: 'Метран-Дистрибуция', items: '15', sent: '18.08.2026', st: 'received' },
+      { id: 'd', sup: 'Спецарматура-Волга', items: '15', sent: '18.08.2026', st: 'waiting' },
+      { id: 'e', sup: 'ПромАвтоматика-Юг', items: '12', sent: '22.07.2026', st: 'overdue' }
+    ]
+  },
+  {
+    title: 'Сравнение и выгрузка',
+    note: 'Цена, НДС, валюта, скидка и срок приводятся к сравнимому виду. Выгрузка — в тот же Excel, в котором работают закупки и коммерческий отдел.',
+    cols: [
+      { key: 'name', header: 'Позиция', width: '40%' },
+      { key: 'sum', header: 'Лучшая цена, ₽', width: '22%', numeric: true, align: 'right' },
+      { key: 'sup', header: 'Поставщик', width: '22%' },
+      { key: 'd', header: 'Δ к базе', width: '16%', numeric: true, align: 'right' }
+    ],
+    rows: HERO.slice(0, 5).map((r) => ({ id: r.id, name: r.name, sum: r.sum == null ? '—' : money(r.sum), sup: r.sup || '—', d: r.d }))
+  }
+];
+
+const SCALE = [
+  { value: 'lt100', label: 'До 100 позиций' },
+  { value: '100-500', label: '100–500 позиций' },
+  { value: '500-2000', label: '500–2 000 позиций' },
+  { value: 'gt2000', label: 'Больше 2 000 позиций' }
+];
+
+const PILL = {
+  draft:    { label: 'Черновик',   tone: 'neutral' },
+  sent:     { label: 'Запрос отправлен', tone: 'info' },
+  waiting:  { label: 'Ждём КП',    tone: 'warn' },
+  overdue:  { label: 'Просрочено', tone: 'danger' },
+  received: { label: 'КП получено', tone: 'info' }
+};
+
+function pill(status) {
+  const s = PILL[status] || PILL.draft;
+  return React.createElement('span', {
+    style: {
+      // Статус — точка и подпись, без плашки: цвет не единственный носитель смысла.
+      display: 'inline-flex', alignItems: 'center', gap: 6, height: 20,
+      fontSize: 12, fontWeight: 500, lineHeight: 1, whiteSpace: 'nowrap',
+      color: 'var(--text-secondary)'
+    }
+  },
+    React.createElement('span', { key: 'd', style: { width: 6, height: 6, borderRadius: 'var(--radius-pill)', background: 'var(--pill-' + s.tone + '-dot)', flex: '0 0 auto' } }),
+    s.label);
+}
+
+class Component extends DCLogic {
+  state = { step: 0, themeOverride: null, faq: 0, form: { name: '', company: '', mail: '' , scale: '' }, consent: false, cookieAck: false, sending: false, sent: false };
+  rootRef = React.createRef();
+  sceneRef = React.createRef();
+  listRef = React.createRef();
+  indRef = React.createRef();
+  barRef = React.createRef();
+  pctRef = React.createRef();
+
+  scroller() {
+    let el = this.listRef.current;
+    while (el && el !== document.body) {
+      const ov = getComputedStyle(el).overflowY;
+      if ((ov === 'auto' || ov === 'scroll') && el.scrollHeight > el.clientHeight + 4) return el;
+      el = el.parentElement;
+    }
+    return document.scrollingElement || document.documentElement;
+  }
+
+  progress() {
+    const bar = this.barRef.current, pct = this.pctRef.current;
+    if (!bar && !pct) return;
+    const s = this.scroller();
+    const max = s.scrollHeight - s.clientHeight;
+    const p = max > 0 ? Math.min(1, Math.max(0, s.scrollTop / max)) : 0;
+    if (bar) bar.style.transform = 'scaleX(' + p.toFixed(4) + ')';
+    if (pct) pct.textContent = Math.round(p * 100) + '%';
+  }
+
+  // Режим «объёмный»: свет и волна идут за курсором, вторая точка догоняет с задержкой.
+  // Пишем CSS-переменные напрямую в узел — без setState, чтобы не перерисовывать страницу.
+  startDepth() {
+    const root = this.rootRef.current;
+    if (!root || this.depthOn) return;
+    this.depthOn = true;
+    this.pt = { x: 0.5, y: 0.4, lx: 0.5, ly: 0.4 };
+    this.onPointer = (e) => { this.pt.x = e.clientX / window.innerWidth; this.pt.y = e.clientY / window.innerHeight; };
+    window.addEventListener('pointermove', this.onPointer, { passive: true });
+    const tick = () => {
+      if (!this.depthOn) return;
+      const p = this.pt;
+      p.lx += (p.x - p.lx) * 0.06;
+      p.ly += (p.y - p.ly) * 0.06;
+      root.style.setProperty('--mx', (p.x * 100).toFixed(2) + '%');
+      root.style.setProperty('--my', (p.y * 100).toFixed(2) + '%');
+      root.style.setProperty('--lx', (p.lx * 100).toFixed(2) + '%');
+      root.style.setProperty('--ly', (p.ly * 100).toFixed(2) + '%');
+      root.style.setProperty('--tx', (p.lx - 0.5).toFixed(3));
+      root.style.setProperty('--ty', (p.ly - 0.5).toFixed(3));
+      this.depthRaf = requestAnimationFrame(tick);
+    };
+    this.depthRaf = requestAnimationFrame(tick);
+    if (window.IntersectionObserver) {
+      this.io = new IntersectionObserver((entries) => {
+        entries.forEach((en) => { if (en.isIntersecting) { en.target.setAttribute('data-in', ''); this.io.unobserve(en.target); } });
+      }, { rootMargin: '0px 0px -12% 0px' });
+      root.querySelectorAll('section, footer').forEach((el) => { el.setAttribute('data-reveal', ''); this.io.observe(el); });
+    }
+  }
+
+  stopDepth() {
+    this.depthOn = false;
+    if (this.depthRaf) cancelAnimationFrame(this.depthRaf);
+    if (this.onPointer) window.removeEventListener('pointermove', this.onPointer);
+    if (this.io) { this.io.disconnect(); this.io = null; }
+    const root = this.rootRef.current;
+    if (root) root.querySelectorAll('[data-reveal]').forEach((el) => { el.removeAttribute('data-reveal'); el.removeAttribute('data-in'); });
+  }
+
+  syncDepth() {
+    const mode = this.props.visual || 'плоский';
+    if (mode === 'объёмный') this.timers.push(setTimeout(() => this.startDepth(), 120));
+    else this.stopDepth();
+    if (mode === '3D') this.timers.push(setTimeout(() => this.startScene(), 120));
+    else this.stopScene();
+  }
+
+  // Сцена 1 — частицы слетаются в знак (2.6 с, ease-out-expo), дальше всё ведёт скролл:
+  // поворот и уход влево привязаны к прогрессу прокрутки, а не к таймеру.
+  startScene() {
+    const cv = this.sceneRef.current, root = this.rootRef.current;
+    if (!cv || !root || this.sceneOn) return;
+    this.sceneOn = true;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const mobile = window.innerWidth <= 940;
+    const ctx = cv.getContext('2d');
+    const DPR = Math.min(window.devicePixelRatio || 1, 2);
+    let W = 0, H = 0, pts = [];
+
+    const build = () => {
+      W = cv.clientWidth || window.innerWidth; H = cv.clientHeight || window.innerHeight;
+      if (!W || !H) return false;
+      cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR);
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      const off = document.createElement('canvas');
+      const size = Math.min(W * 0.5, 520);
+      off.width = Math.round(size); off.height = Math.round(size * 0.42);
+      const octx = off.getContext('2d');
+      octx.fillStyle = '#fff';
+      octx.textAlign = 'center'; octx.textBaseline = 'middle';
+      octx.font = '700 ' + Math.round(off.width * 0.34) + 'px "IBM Plex Sans", sans-serif';
+      octx.fillText('AMT', off.width / 2, off.height / 2);
+      if (!off.width || !off.height) return false;
+      const data = octx.getImageData(0, 0, off.width, off.height).data;
+      const gap = mobile ? 6 : 4;
+      pts = [];
+      for (let y = 0; y < off.height; y += gap) {
+        for (let x = 0; x < off.width; x += gap) {
+          if (data[(y * off.width + x) * 4 + 3] > 128) {
+            pts.push({
+              tx: x - off.width / 2, ty: y - off.height / 2, tz: (Math.random() - 0.5) * 26,
+              x: (Math.random() - 0.5) * W * 1.4, y: (Math.random() - 0.5) * H * 1.4, z: (Math.random() - 0.5) * 900
+            });
+          }
+        }
+      }
+      // Отсчёт сборки стартует с момента, когда точки действительно появились.
+      if (pts.length && !this.sceneT0) this.sceneT0 = performance.now();
+      return pts.length > 0;
+    };
+
+    this.timers = this.timers || [];
+    try { build(); } catch (err) { console.error('scene build', err); }
+    // Размер холста может появиться позже стрима — пересобираем, пока точек нет.
+    [80, 300, 800, 1600].forEach((t) => this.timers.push(setTimeout(() => { if (this.sceneOn && !pts.length) build(); }, t)));
+    this.onSceneResize = () => build();
+    window.addEventListener('resize', this.onSceneResize);
+
+    const expo = (t) => (t >= 1 ? 1 : 1 - Math.pow(2, -10 * t));
+    const draw = () => {
+      if (!this.sceneOn) return;
+      this.sceneRaf = requestAnimationFrame(draw);
+      if (!pts.length || !W || !H) return;
+      const assemble = reduce ? 1 : Math.min((performance.now() - (this.sceneT0 || performance.now())) / 2600, 1);
+      const e = expo(assemble);
+      try {
+      const hero = root.querySelector('[data-hero]');
+      const hb = hero ? hero.getBoundingClientRect() : { height: H };
+      // Прогресс прокрутки героя: 0 — сцена собрана по центру, 1 — знак повёрнут и ушёл влево.
+      const sp = Math.max(0, Math.min(1, (-hb.top) / Math.max(hb.height, 1)));
+      const rot = (mobile ? 0 : sp * 0.9) + (1 - e) * 0.6;
+      const cx = W / 2 - sp * W * 0.42, cy = H * 0.44;
+      const cam = 900 - e * 240 + sp * 200;
+      ctx.clearRect(0, 0, W, H);
+      ctx.globalCompositeOperation = 'lighter';
+      const cos = Math.cos(rot), sin = Math.sin(rot);
+      const alpha = (1 - sp * 0.85) * (0.35 + e * 0.65);
+      for (let i = 0; i < pts.length; i++) {
+        const p = pts[i];
+        const x = p.x + (p.tx - p.x) * e, y = p.y + (p.ty - p.y) * e, z = p.z + (p.tz - p.z) * e;
+        const rx = x * cos - z * sin, rz = x * sin + z * cos;
+        const s = cam / (cam + rz + 300);
+        const px = cx + rx * s * 1.6, py = cy + y * s * 1.6;
+        const r = Math.max(0.4, 1.5 * s);
+        ctx.fillStyle = 'rgba(106, 158, 224, ' + (alpha * (0.35 + s * 0.65)).toFixed(3) + ')';
+        ctx.beginPath(); ctx.arc(px, py, r, 0, 6.2832); ctx.fill();
+      }
+      ctx.globalCompositeOperation = 'source-over';
+      } catch (err) { console.error('scene draw', err); }
+    };
+    this.sceneRaf = requestAnimationFrame(draw);
+
+    if (window.IntersectionObserver) {
+      this.sio = new IntersectionObserver((entries) => {
+        entries.forEach((en) => { if (en.isIntersecting) { en.target.setAttribute('data-in', ''); this.sio.unobserve(en.target); } });
+      }, { rootMargin: '0px 0px -30% 0px' });
+      root.querySelectorAll('section, footer').forEach((el) => { el.setAttribute('data-reveal', ''); this.sio.observe(el); });
+    }
+  }
+
+  stopScene() {
+    if (!this.sceneOn) return;
+    this.sceneOn = false;
+    this.sceneT0 = 0;
+    if (this.sceneRaf) cancelAnimationFrame(this.sceneRaf);
+    if (this.onSceneResize) window.removeEventListener('resize', this.onSceneResize);
+    if (this.sio) { this.sio.disconnect(); this.sio = null; }
+    const root = this.rootRef.current;
+    if (root) root.querySelectorAll('[data-reveal]').forEach((el) => { el.removeAttribute('data-reveal'); el.removeAttribute('data-in'); });
+  }
+
+  componentDidMount() {
+    // Шаблон стримится: один проход в didMount видит не всё дерево — обмер повторяется.
+    this.timers = [];
+    this.syncDepth();
+    if (window.ResizeObserver && this.listRef.current) {
+      this.ro = new ResizeObserver(() => this.measure());
+      this.ro.observe(this.listRef.current);
+    }
+    this.onView = () => { this.measure(); this.progress(); };
+    window.addEventListener('resize', this.onView);
+    this.onScroll = () => {
+      if (this.raf) return;
+      this.raf = requestAnimationFrame(() => { this.raf = 0; this.progress(); });
+    };
+    window.addEventListener('scroll', this.onScroll, true);
+    this.timers.push(setTimeout(() => this.progress(), 300));
+    [0, 60, 250, 900, 2000].forEach((t) => this.timers.push(setTimeout(() => this.measure(), t)));
+    requestAnimationFrame(() => this.measure());
+  }
+
+  componentDidUpdate(prev) {
+    this.progress();
+    if (prev.visual !== this.props.visual) this.syncDepth();
+  }
+
+  componentWillUnmount() {
+    this.stopDepth();
+    this.stopScene();
+    if (this.ro) this.ro.disconnect();
+    window.removeEventListener('resize', this.onView);
+    window.removeEventListener('scroll', this.onScroll, true);
+    if (this.raf) cancelAnimationFrame(this.raf);
+    (this.timers || []).forEach(clearTimeout);
+  }
+
+  measure() {
+    const list = this.listRef.current, bar = this.indRef.current;
+    if (!list || !bar) return;
+    const row = list.querySelectorAll('[data-step]')[this.state.step];
+    if (!row) return;
+    bar.style.transform = 'translateY(' + Math.round(row.offsetTop) + 'px) scaleY(' + Math.round(row.offsetHeight) + ')';
+  }
+
+  field(k, val) {
+    this.setState((st) => ({ form: { ...st.form, [k]: val } }));
+  }
+
+  set(i) {
+    if (this.state.step === i) return;
+    this.setState({ step: i }, () => this.measure());
+  }
+
+  heroColumns() {
+    const ns = window.AMTSystemsDesignSystem_374943 || {};
+    // Позиция без соответствия помечается тёплым цветом системы — цвет не единственный
+    // носитель смысла: рядом стоят «—» и «не подобран».
+    const flag = (r) => r.sum == null ? { color: 'var(--text-attention)' } : undefined;
+    return [
+      { key: 'name', header: 'Позиция', width: '27%',
+        render: (r) => React.createElement('span', { style: flag(r) }, r.name) },
+      { key: 'q', header: 'Кол-во', width: '9%', numeric: true, align: 'right', render: (r) => qty(r.q) },
+      { key: 'u', header: 'Ед', width: '6%', muted: true },
+      { key: 'sum', header: 'Лучшая цена, ₽', width: '16%', numeric: true, align: 'right',
+        render: (r) => React.createElement('span', { style: flag(r) }, r.sum == null ? '—' : money(r.sum)) },
+      { key: 'sup', header: 'Поставщик', width: '16%',
+        render: (r) => React.createElement('span', { style: flag(r) }, r.sup || 'не подобран') },
+      { key: 'd', header: 'Δ к базе', width: '11%', numeric: true, align: 'right',
+        render: (r) => r.d == null ? '—' : (ns.PriceDelta ? React.createElement(ns.PriceDelta, { value: r.d }) : String(r.d)) },
+      { key: 'st', header: 'Статус', width: '15%', render: (r) => pill(r.st) }
+    ];
+  }
+
+  stepColumns(step) {
+    const ns = window.AMTSystemsDesignSystem_374943 || {};
+    return step.cols.map((c) => {
+      if (c.key === 'st') return { ...c, render: (r) => pill(r.st) };
+      // Ключ 'd' на первом шаге — текстовое примечание, а не отклонение цены.
+      if (c.key === 'd') return { ...c, render: (r) => typeof r.d !== 'number' ? (r.d == null || r.d === '' ? '—' : r.d) : (ns.PriceDelta ? React.createElement(ns.PriceDelta, { value: r.d }) : String(r.d)) };
+      if (c.key === 'sku' || c.key === 'match' || c.key === 'src') {
+        return { ...c, render: (r) => React.createElement('span', { style: { color: r.flag ? 'var(--text-attention)' : undefined } }, r[c.key]) };
+      }
+      return c;
+    });
+  }
+
+  renderVals() {
+    const s = this.state.step;
+    const step = STEPS[s];
+    // Сцена 3D живёт на тёмном фоне — тема переключается вместе с режимом.
+    const theme = this.state.themeOverride || ((this.props.visual || 'плоский') === '3D' ? 'dark' : (this.props.theme || 'light'));
+    const v = {
+      theme: theme,
+      visual: this.props.visual || 'плоский',
+      rootRef: this.rootRef,
+      sceneRef: this.sceneRef,
+      themeLabel: theme === 'dark' ? 'Светлая' : 'Тёмная',
+      toggleTheme: () => this.setState({ themeOverride: theme === 'dark' ? 'light' : 'dark' }),
+      barRef: this.barRef,
+      pctRef: this.pctRef,
+      showProgress: (this.props.progress || 'line') !== 'off',
+      showCounter: (this.props.progress || 'line') === 'line+percent',
+      listRef: this.listRef,
+      indRef: this.indRef,
+      density: this.props.tableDensity || 'compact',
+      goCta: () => { window.location.hash = 'cta'; },
+      goRoute: () => { window.location.hash = 'route'; },
+      heroCols: this.heroColumns(),
+      heroRows: HERO,
+      heroTotals: { name: 'Итого по 7 позициям', sum: money(904100), sup: '', d: '', q: '', u: '', st: '' },
+      stepCols: this.stepColumns(step),
+      stepRows: step.rows,
+      stepTitle: step.title,
+      stepNote: step.note,
+      stepIndex: 'шаг 0' + (s + 1) + ' из 05'
+    };
+    for (let i = 0; i < 5; i++) {
+      v['pick' + i] = () => this.set(i);
+      v['bg' + i] = s === i ? 'var(--surface-selected)' : 'var(--surface-card)';
+      v['q' + i] = () => this.setState((st) => ({ faq: st.faq === i ? -1 : i }));
+      v['f' + i] = this.state.faq === i;
+      v['e' + i] = this.state.faq === i ? 'true' : 'false';
+      v['n' + i] = this.state.faq === i ? 'minus' : 'plus';
+    }
+    const f = this.state.form;
+    const filled = f.name.trim() && f.company.trim() && /.+@.+\..+/.test(f.mail.trim());
+    v.fName = f.name; v.fCompany = f.company; v.fMail = f.mail; v.fScale = f.scale;
+    v.setName = (e) => this.field('name', e.target.value);
+    v.setCompany = (e) => this.field('company', e.target.value);
+    v.setMail = (e) => this.field('mail', e.target.value);
+    v.setScale = (e) => this.field('scale', e.target.value);
+    v.scaleOptions = SCALE;
+    // 152-ФЗ: без явного согласия отправка недоступна.
+    const ready = filled && this.state.consent;
+    v.consent = this.state.consent;
+    v.toggleConsent = () => this.setState(s => ({ consent: !s.consent }));
+    v.cookieOpen = !this.state.cookieAck;
+    v.ackCookies = () => this.setState({ cookieAck: true });
+    v.ctaDisabled = !ready || this.state.sending;
+    v.submitLabel = this.state.sending ? 'Отправляем заявку…' : 'Отправить заявку';
+    v.formHint = this.state.sending ? 'Отправляем заявку…'
+      : ready ? 'Ответим в рабочий день.'
+      : filled ? 'Отметьте согласие на обработку персональных данных.'
+      : 'Заполните имя, компанию и рабочую почту.';
+    // Двойное нажатие не создаёт вторую заявку: кнопка заблокирована на время отправки.
+    v.submit = () => {
+      if (!ready || this.state.sending) return;
+      this.setState({ sending: true });
+      (this.timers = this.timers || []).push(setTimeout(() => this.setState({ sending: false, sent: true }), 700));
+    };
+    v.sent = this.state.sent;
+    v.notSent = !this.state.sent;
+    v.sentNote = 'Спасибо, ' + (f.name.trim().split(' ')[0] || 'коллеги') + '. Напишем на ' + (f.mail.trim() || 'указанную почту') + ' и предложим два слота на 30–45 минут.';
+    return v;
+  }
+}
+</script>
+</body>
+</html>
